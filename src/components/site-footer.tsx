@@ -117,7 +117,11 @@ export function SiteFooter() {
 
       <div className="border-t border-primary-foreground/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-primary-foreground/60 sm:flex-row sm:px-6 lg:px-8">
-          <div>© {new Date().getFullYear()} Caprani Plumbing & Heating. All rights reserved.</div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span>© {new Date().getFullYear()} Caprani Plumbing & Heating. All rights reserved.</span>
+            <Link to="/terms" className="hover:text-accent">Terms & Conditions</Link>
+            <Link to="/privacy" className="hover:text-accent">Privacy Policy</Link>
+          </div>
           <div className="flex items-center gap-4">
             <span>Gas Safe registered · Fully insured · 24/7 emergency</span>
             <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-accent"><FacebookIcon className="h-4 w-4" /></a>

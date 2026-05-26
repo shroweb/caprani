@@ -14,10 +14,22 @@ import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CarePlansRouteImport } from './routes/care-plans'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TestimonialsRoute = TestimonialsRouteImport.update({
   id: '/testimonials',
   path: '/testimonials',
@@ -66,6 +78,8 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/jobs': typeof JobsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/terms': typeof TermsRoute
+  '/privacy': typeof PrivacyRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -76,6 +90,8 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/jobs': typeof JobsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/terms': typeof TermsRoute
+  '/privacy': typeof PrivacyRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services': typeof ServicesIndexRoute
 }
@@ -87,6 +103,8 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/jobs': typeof JobsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/terms': typeof TermsRoute
+  '/privacy': typeof PrivacyRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/services/': typeof ServicesIndexRoute
 }
@@ -99,6 +117,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/jobs'
     | '/testimonials'
+    | '/terms'
+    | '/privacy'
     | '/services/$slug'
     | '/services/'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +129,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/jobs'
     | '/testimonials'
+    | '/terms'
+    | '/privacy'
     | '/services/$slug'
     | '/services'
   id:
@@ -119,6 +141,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/jobs'
     | '/testimonials'
+    | '/terms'
+    | '/privacy'
     | '/services/$slug'
     | '/services/'
   fileRoutesById: FileRoutesById
@@ -130,6 +154,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   JobsRoute: typeof JobsRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  TermsRoute: typeof TermsRoute
+  PrivacyRoute: typeof PrivacyRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
 }
@@ -148,6 +174,20 @@ declare module '@tanstack/react-router' {
       path: '/jobs'
       fullPath: '/jobs'
       preLoaderRoute: typeof JobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -202,6 +242,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   JobsRoute: JobsRoute,
   TestimonialsRoute: TestimonialsRoute,
+  TermsRoute: TermsRoute,
+  PrivacyRoute: PrivacyRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
 }

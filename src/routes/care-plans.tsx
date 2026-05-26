@@ -35,9 +35,12 @@ const excluded = [
   "Pre-existing faults at sign-up",
   "Commercial gas appliances",
   "Boilers over 70kW",
+  "Complex heating systems (heat pumps, solar thermal)",
   "Showers, shower pumps, macerators",
   "Drainage systems and waste pipework",
-  "Damage from frost, fire or floods",
+  "Lead, steel or iron pipework",
+  "Pipework access labour exceeding 20 minutes",
+  "Damage from frost, fire, floods or tenant misuse",
 ];
 
 function CarePlans() {

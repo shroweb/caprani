@@ -13,6 +13,7 @@ const nav = [
   { to: "/testimonials", label: "Reviews" },
   { to: "/jobs", label: "Jobs" },
   { to: "/contact", label: "Contact" },
+  { to: "/terms", label: "T&Cs" },
 ];
 
 export function SiteHeader() {

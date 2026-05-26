@@ -205,7 +205,7 @@ export const SERVICE_DETAILS: Record<
     ],
     process: [
       { title: "Free home survey", description: "We come out, measure up, and talk you through the options — no obligation, no hard sell." },
-      { title: "Written fixed quote", description: "Itemised, valid for 30 days, with finance options if you'd rather spread the cost." },
+      { title: "Written fixed quote", description: "Itemised, valid for 14 days, with finance options if you'd rather spread the cost." },
       { title: "Install day", description: "Typically one to two days. Floors covered, old kit removed, new system flushed and commissioned." },
       { title: "Aftercare", description: "Warranty registered with the manufacturer, plus our own 12-month workmanship guarantee." },
     ],
