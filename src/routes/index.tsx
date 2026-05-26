@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, ShieldCheck, Clock, BadgeCheck, MapPin, ArrowRight, Quote } from "lucide-react";
-import { SITE, SERVICES, HERO_IMG, DIRECTOR_QUOTE } from "@/lib/site";
+import { Phone, ShieldCheck, Clock, BadgeCheck, MapPin, ArrowRight, Star, ExternalLink } from "lucide-react";
+import { SITE, SERVICES, HERO_IMG, REVIEWS } from "@/lib/site";
+import { GoogleIcon } from "@/components/social-icons";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 
@@ -63,16 +64,53 @@ function Home() {
         </div>
       </section>
 
-      {/* DIRECTOR PROOF — replaces the made-up 4-stat grid */}
+      {/* REVIEWS */}
       <section className="bg-background">
-        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <Reveal>
-            <Quote className="h-10 w-10 text-accent/40" />
-            <blockquote className="mt-4 text-2xl font-medium leading-snug text-foreground sm:text-3xl">
-              "{DIRECTOR_QUOTE.text}"
-            </blockquote>
-            <div className="mt-6 text-sm font-semibold text-muted-foreground">
-              — {DIRECTOR_QUOTE.attribution}, family-run in Hull since {SITE.founded}
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <div className="text-sm font-semibold uppercase tracking-wider text-accent">Customer reviews</div>
+                <h2 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">What Hull customers say</h2>
+              </div>
+              <a
+                href={SITE.google.reviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm transition-colors hover:border-accent/50 hover:bg-secondary"
+              >
+                <GoogleIcon className="h-4 w-4 shrink-0" />
+                <span className="font-bold">{SITE.google.rating}</span>
+                <div className="flex">
+                  {[0,1,2,3,4].map(i => <Star key={i} className="h-3.5 w-3.5 fill-accent text-accent" />)}
+                </div>
+                <span className="text-muted-foreground">{SITE.google.reviewCount} reviews</span>
+                <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
+              </a>
+            </div>
+          </Reveal>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+            {REVIEWS.map((r, i) => (
+              <Reveal key={r.name} delay={i * 70}>
+                <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm">
+                  <div className="flex">
+                    {Array.from({ length: r.rating }).map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-accent text-accent" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground">
+                    "{r.text}"
+                  </blockquote>
+                  <figcaption className="mt-4 text-sm font-semibold text-muted-foreground">— {r.name}</figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={120}>
+            <div className="mt-6 text-center">
+              <Link to="/testimonials" className="text-sm font-semibold text-accent hover:underline">
+                See all reviews →
+              </Link>
             </div>
           </Reveal>
         </div>
