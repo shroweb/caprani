@@ -119,8 +119,9 @@ function Contact() {
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-accent" /> {SITE.email}
               </li>
-              <li className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-accent" /> Hull, East Yorkshire
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                <span>{SITE.address}</span>
               </li>
             </ul>
             <div className="mt-5 rounded-md bg-accent/10 p-3 text-xs text-foreground">

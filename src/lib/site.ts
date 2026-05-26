@@ -16,12 +16,18 @@ export const SITE = {
   phone: "01482 762888",
   phoneHref: "tel:01482762888",
   area: "Hull & East Yorkshire",
+  address: "896 Spring Bank West, Hull HU5 5BL",
   email: "info@capraniplumbing.co.uk",
   founded: 2016,
   gasSafe: "579132",
   oftec: "C105741",
   companyNo: "10010264",
   director: "Nathan Caprani",
+  google: {
+    rating: 4.9,
+    reviewCount: 183,
+    reviewsUrl: "https://www.google.com/maps/place/Caprani+Plumbing+%26+Heating+Limited/",
+  },
   social: {
     facebook: "https://www.facebook.com/capraniplumbingandheating/",
     instagram: "https://www.instagram.com/capraniplumbingandheating/",
@@ -29,6 +35,21 @@ export const SITE = {
     youtube: "https://www.youtube.com/channel/UCPtYSydpLIk6hBcS3nnWAvw",
   },
 };
+
+export const REVIEWS = [
+  {
+    name: "Jim Keane",
+    rating: 5,
+    text: "Nathan from Caprani was personable, professional and did a great job repairing our burst pipe in a tight spot. He was also considerate in how he treated our home. We had a great chat about Heat Pumps and renewables too.",
+    source: "Google" as const,
+  },
+  {
+    name: "Zachary Ashworth",
+    rating: 5,
+    text: "Big thanks to Nathan for fixing our leaking bathroom! Very knowledgeable, confident and skilled in his trade — 10/10 would come to these guys for any issue that needs sorting.",
+    source: "Google" as const,
+  },
+] satisfies { name: string; rating: number; text: string; source: "Google" }[];
 
 const IMG = "https://img1.wsimg.com/isteam/ip/19f149d2-47b5-4126-aafc-6b3c594766b3";
 export const HERO_IMG = engineerBoiler;

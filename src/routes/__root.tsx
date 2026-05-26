@@ -105,9 +105,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           email: SITE.email,
           address: {
             "@type": "PostalAddress",
+            streetAddress: "896 Spring Bank West",
             addressLocality: "Hull",
+            postalCode: "HU5 5BL",
             addressRegion: "East Yorkshire",
             addressCountry: "GB",
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: SITE.google.rating,
+            reviewCount: SITE.google.reviewCount,
           },
           areaServed: { "@type": "AdministrativeArea", name: SITE.area },
           openingHoursSpecification: {
