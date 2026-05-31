@@ -10,7 +10,7 @@ export function SiteFooter() {
     <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
         <div>
-          <img src={logo} alt="Caprani Plumbing & Heating" className="h-10 w-auto brightness-0 invert" />
+          <img src={logo} alt="Caprani Plumbing & Heating" className="h-10 w-auto" />
           <p className="mt-4 text-sm text-primary-foreground/75">
             Hull's local Gas Safe plumbing and heating specialists. Domestic & commercial,
             24/7 emergency cover across {SITE.area}.
