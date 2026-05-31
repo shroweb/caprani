@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { MobileCta } from "@/components/mobile-cta";
 import { SITE } from "@/lib/site";
 
 function NotFoundComponent() {
@@ -166,10 +167,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <SiteHeader />
-      <main>
+      <main className="pb-16 sm:pb-0">
         <Outlet />
       </main>
       <SiteFooter />
+      <MobileCta />
     </QueryClientProvider>
   );
 }

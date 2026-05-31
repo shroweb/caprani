@@ -117,7 +117,8 @@ function Contact() {
                 <a className="font-semibold hover:text-accent" href={SITE.phoneHref}>{SITE.phone}</a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-accent" /> {SITE.email}
+                <Mail className="h-4 w-4 text-accent" />
+                <a href={`mailto:${SITE.email}`} className="hover:text-accent">{SITE.email}</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
@@ -134,7 +135,7 @@ function Contact() {
             <p className="px-6 pb-4 pt-1 text-sm text-muted-foreground">Hull, Hessle, Cottingham, Anlaby, Kingswood, Beverley and surrounding East Yorkshire.</p>
             <iframe
               title="Hull coverage map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.50%2C53.70%2C-0.20%2C53.82&layer=mapnik&marker=53.7676%2C-0.3274"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-0.3937%2C53.7505%2C-0.3537%2C53.7705&layer=mapnik&marker=53.7605%2C-0.3737"
               className="h-72 w-full border-0"
               loading="lazy"
             />

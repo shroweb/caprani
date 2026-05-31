@@ -21,7 +21,7 @@ function About() {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <div className="text-sm font-semibold uppercase tracking-wider text-accent">About us</div>
           <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Hello and a big friendly warm welcome
+            Hull's family-run plumbing & heating team
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-primary-foreground/85">
             Founded in {SITE.founded}, Caprani Plumbing & Heating is a small, family-run business based in Hull, dedicated to serving both domestic and commercial clients. Specialising in plumbing, heating and oil services.

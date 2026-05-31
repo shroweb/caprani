@@ -41,7 +41,13 @@ function ServiceDetail() {
           <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/60" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <Link to="/services" className="text-sm text-primary-foreground/70 hover:text-accent">← All services</Link>
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-primary-foreground/60">
+            <Link to="/" className="hover:text-accent">Home</Link>
+            <span>/</span>
+            <Link to="/services" className="hover:text-accent">Services</Link>
+            <span>/</span>
+            <span className="text-primary-foreground/90">{service.title}</span>
+          </nav>
           <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">{service.title}</h1>
           <p className="mt-4 max-w-2xl text-lg text-primary-foreground/85">
             {details?.intro ?? service.short}

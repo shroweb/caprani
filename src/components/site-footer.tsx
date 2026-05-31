@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { SITE, SERVICES } from "@/lib/site";
 import { FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from "@/components/social-icons";
+import logo from "@/assets/logo.webp";
 
 
 export function SiteFooter() {
@@ -9,12 +10,7 @@ export function SiteFooter() {
     <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-md bg-accent text-accent-foreground font-bold">
-              C
-            </span>
-            <div className="font-semibold">Caprani Plumbing & Heating</div>
-          </div>
+          <img src={logo} alt="Caprani Plumbing & Heating" className="h-10 w-auto brightness-0 invert" />
           <p className="mt-4 text-sm text-primary-foreground/75">
             Hull's local Gas Safe plumbing and heating specialists. Domestic & commercial,
             24/7 emergency cover across {SITE.area}.
@@ -98,8 +94,10 @@ export function SiteFooter() {
                 <Phone className="h-4 w-4 text-accent" /> {SITE.phone}
               </a>
             </li>
-            <li className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-accent" /> {SITE.email}
+            <li>
+              <a href={`mailto:${SITE.email}`} className="flex items-center gap-2 hover:text-accent">
+                <Mail className="h-4 w-4 text-accent" /> {SITE.email}
+              </a>
             </li>
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />

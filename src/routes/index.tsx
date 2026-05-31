@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, ShieldCheck, Clock, BadgeCheck, MapPin, ArrowRight, Star, ExternalLink } from "lucide-react";
+import { Phone, ShieldCheck, Clock, BadgeCheck, Star, ArrowRight, ExternalLink } from "lucide-react";
 import { SITE, SERVICES, HERO_IMG, REVIEWS } from "@/lib/site";
 import { GoogleIcon } from "@/components/social-icons";
 import { Reveal } from "@/components/reveal";
@@ -17,6 +17,7 @@ function Home() {
             src={HERO_IMG}
             alt="Caprani Plumbing & Heating engineer working on copper pipework in Hull"
             className="h-full w-full object-cover"
+            fetchPriority="high"
           />
           {/* subtle bottom-left darken only — not a full overlay */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/55 via-black/20 to-transparent" />
@@ -54,13 +55,29 @@ function Home() {
         </div>
       </section>
 
-      {/* TRUST BAR — replaces fake stats. Real registration numbers. */}
+      {/* TRUST BAR */}
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 gap-y-5 px-4 py-6 sm:px-6 md:grid-cols-4 lg:px-8">
           <Trust icon={ShieldCheck} label="Gas Safe Registered" value={`No. ${SITE.gasSafe}`} />
           <Trust icon={BadgeCheck} label="OFTEC Registered" value={`No. ${SITE.oftec}`} />
           <Trust icon={Clock} label="Emergency Cover" value="24/7, 365 days" />
-          <Trust icon={MapPin} label="Coverage" value={SITE.area} />
+          <a
+            href={SITE.google.reviewsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 hover:opacity-80"
+          >
+            <GoogleIcon className="h-5 w-5 shrink-0" />
+            <div>
+              <div className="flex items-center gap-1">
+                <span className="text-sm font-semibold leading-tight text-foreground">{SITE.google.rating}</span>
+                <div className="flex">
+                  {[0,1,2,3,4].map(i => <Star key={i} className="h-3 w-3 fill-accent text-accent" />)}
+                </div>
+              </div>
+              <div className="text-xs text-muted-foreground">{SITE.google.reviewCount} Google reviews</div>
+            </div>
+          </a>
         </div>
       </section>
 
