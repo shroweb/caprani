@@ -32,15 +32,65 @@ const memberPerks = [
 ];
 
 const excluded = [
-  "Pre-existing faults at sign-up",
-  "Commercial gas appliances",
-  "Boilers over 70kW",
-  "Complex heating systems (heat pumps, solar thermal)",
-  "Showers, shower pumps, macerators",
-  "Drainage systems and waste pipework",
-  "Lead, steel or iron pipework",
-  "Pipework access labour exceeding 20 minutes",
-  "Damage from frost, fire, floods or tenant misuse",
+  {
+    category: "Gas appliances",
+    items: [
+      "Pre-existing faults at sign-up",
+      "Commercial gas appliances",
+      "Boilers over 70kW",
+      "Back boilers with obsolete components",
+      "Unvented hot water cylinders",
+      "Gas pipework alterations or upgrades",
+      "Flue and chimney work",
+      "Asbestos removal",
+      "Cosmetic repairs or deep cleaning",
+      "Damage from limescale, sludge or poor maintenance",
+    ],
+  },
+  {
+    category: "Central heating",
+    items: [
+      "Radiator bleeding, balancing or remedial work",
+      "Non-standard radiator valve repairs",
+      "Cylinder or expansion vessel work",
+      "Heat pumps, solar thermal or specialist systems",
+      "Powerflushing or chemical cleaning (available separately)",
+    ],
+  },
+  {
+    category: "Water pipework",
+    items: [
+      "Lead, steel or iron pipework",
+      "Pipework access labour exceeding 20 minutes",
+      "Stop tap repairs or replacement",
+      "Washing machine or dishwasher connections",
+      "Pipework beyond the external stop tap",
+      "Shared or communal building pipework",
+      "Frozen pipe or tenant damage",
+    ],
+  },
+  {
+    category: "Taps & toilets",
+    items: [
+      "Sanitary ware replacement",
+      "Work requiring removal of tiling or fitted furniture",
+      "Concealed cisterns without access panels",
+      "Macerators, bidets, urinals or electric toilets",
+      "Limescale damage",
+      "Blockages from tenant misuse",
+    ],
+  },
+  {
+    category: "General",
+    items: [
+      "Drainage systems and waste pipework",
+      "Shower systems and shower pumps",
+      "Water ingress from roofs or external sources",
+      "Damage from frost, fire, floods or acts of God",
+      "Third-party, inter-tenancy or tenant negligence damage",
+      "Liability for property damage caused by leaks",
+    ],
+  },
 ];
 
 function CarePlans() {
@@ -120,19 +170,39 @@ function CarePlans() {
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-border bg-secondary/40 p-6">
-                <h4 className="text-sm font-bold">Not covered</h4>
-                <ul className="mt-3 space-y-2 text-xs text-muted-foreground">
-                  {excluded.map((e) => (
-                    <li key={e} className="flex items-start gap-2">
-                      <X className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground" /> {e}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-3 text-[11px] text-muted-foreground">Full exclusions in our T&Cs — we'll walk you through them before you sign.</p>
+              <div className="rounded-2xl border border-border bg-secondary/40 p-5 text-xs text-muted-foreground">
+                Full exclusions listed below — we'll walk you through everything before you sign.
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      {/* Full exclusions */}
+      <section className="border-t border-border bg-secondary/30">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-xl font-bold">What's not covered</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              We'll go through all of this before you sign — no surprises.
+            </p>
+          </Reveal>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {excluded.map((cat, i) => (
+              <Reveal key={cat.category} delay={i * 60}>
+                <div className="rounded-xl border border-border bg-card p-5">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">{cat.category}</h3>
+                  <ul className="mt-3 space-y-1.5">
+                    {cat.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
+                        <X className="mt-0.5 h-3.5 w-3.5 shrink-0" /> {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

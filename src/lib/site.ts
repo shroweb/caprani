@@ -162,15 +162,15 @@ export const SERVICES = [
 ] as const;
 
 export const TEAM = [
-  { name: "Nathan Caprani", role: "Company Director & Lead Engineer", since: "2007", img: `${IMG}/Nathan.jpg/:/cr=t:6.3%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "Jessica Caprani", role: "Office Manager", img: `${IMG}/Jessica.jpg/:/cr=t:17.85%25,l:0%25,w:100%25,h:71.1%25/rs=w:600,h:600,cg:true` },
-  { name: "Matthew Owen", role: "Operations Manager", img: `${IMG}/Matthew.jpg/:/cr=t:8.26%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "Paul Jewitt", role: "Plumbing & Heating Engineer", img: `${IMG}/Paul.jpg/:/cr=t:8.26%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "George Benn", role: "Plumbing & Heating Apprentice", since: "2021", img: `${IMG}/George.jpg/:/cr=t:5.98%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "Tyler Hill", role: "Plumbing & Heating Apprentice", img: `${IMG}/Tyler%20Hill.jpg/:/cr=t:6.96%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "Justina Plaxton", role: "Admin Assistant", img: `${IMG}/Justina%20Plaxton.jpg/:/cr=t:13.76%25,l:0%25,w:100%25,h:62.2%25/rs=w:600,h:600,cg:true` },
-  { name: "Mullak Yeldar", role: "Quality & Compliance Coordinator", img: `${IMG}/Kallum.png/:/cr=t:16.27%25,l:0%25,w:100%25,h:67.45%25/rs=w:600,h:600,cg:true` },
-  { name: "Otto", role: "The Office Dog", img: `${IMG}/blob-03a281b.png/:/cr=t:26.79%25,l:12.83%25,w:80.65%25,h:60.44%25/rs=w:600,h:600,cg:true,m` },
+  { name: "Nathan Caprani", role: "Company Director & Lead Engineer", since: "2007", bio: "In the trade since 2007, Nathan combines technical expertise with hands-on involvement in every project. He mentors the team and drives the company forward through quality and continuous improvement.", img: `${IMG}/Nathan.jpg/:/cr=t:6.3%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
+  { name: "Jessica Caprani", role: "Office Manager", bio: "Manages administrative and logistical operations with precision, overseeing company structure and ensuring smooth daily workflows.", img: `${IMG}/Jessica.jpg/:/cr=t:17.85%25,l:0%25,w:100%25,h:71.1%25/rs=w:600,h:600,cg:true` },
+  { name: "Matthew Owen", role: "Operations Manager", bio: "Seven+ years of industry experience. Oversees day-to-day operations, maintains quality standards and fosters teamwork and customer satisfaction.", img: `${IMG}/Matthew.jpg/:/cr=t:8.26%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
+  { name: "Paul Jewitt", role: "Plumbing & Heating Engineer", bio: "Senior engineer specialising in servicing and maintenance, with meticulous attention to detail and strong problem-solving skills.", img: `${IMG}/Paul.jpg/:/cr=t:8.26%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
+  { name: "George Benn", role: "Plumbing & Heating Apprentice", since: "2021", bio: "Working toward NVQ Level 3, one year from Gas Qualification. Shows real initiative and a collaborative spirit on every job.", img: `${IMG}/George.jpg/:/cr=t:5.98%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
+  { name: "Tyler Hill", role: "Plumbing & Heating Apprentice", bio: "First-year apprentice with a strong work ethic and natural drive — keen to learn and quick to take on responsibility.", img: `${IMG}/Tyler%20Hill.jpg/:/cr=t:6.96%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
+  { name: "Justina Plaxton", role: "Admin Assistant", bio: "Newest team member bringing organisation, attention to detail and a solutions-focused approach to keeping the office running.", img: `${IMG}/Justina%20Plaxton.jpg/:/cr=t:13.76%25,l:0%25,w:100%25,h:62.2%25/rs=w:600,h:600,cg:true` },
+  { name: "Mullak Yeldar", role: "Quality & Compliance Coordinator", bio: "Conducts van audits, equipment checks and quality inspections to ensure every job meets our standards.", img: `${IMG}/Kallum.png/:/cr=t:16.27%25,l:0%25,w:100%25,h:67.45%25/rs=w:600,h:600,cg:true` },
+  { name: "Otto", role: "The Office Dog", bio: "Provides customer hospitality and essential office morale. No further qualifications required.", img: `${IMG}/blob-03a281b.png/:/cr=t:26.79%25,l:12.83%25,w:80.65%25,h:60.44%25/rs=w:600,h:600,cg:true,m` },
 ];
 
 export const DIRECTOR_QUOTE = {

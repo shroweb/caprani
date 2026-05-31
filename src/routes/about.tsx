@@ -91,8 +91,9 @@ function About() {
                 </div>
                 <figcaption className="p-5">
                   <div className="font-semibold text-foreground">{p.name}</div>
-                  <div className="text-sm text-muted-foreground">{p.role}</div>
-                  {p.since && <div className="mt-1 text-xs text-accent">With Caprani since {p.since}</div>}
+                  <div className="text-sm font-medium text-accent">{p.role}</div>
+                  {p.since && <div className="mt-0.5 text-xs text-muted-foreground">With Caprani since {p.since}</div>}
+                  {p.bio && <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{p.bio}</p>}
                 </figcaption>
               </figure>
             </Reveal>

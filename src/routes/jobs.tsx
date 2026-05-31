@@ -101,7 +101,7 @@ function Jobs() {
           <Reveal>
             <h2 className="text-2xl font-bold">Apply</h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Send us your details and we'll be in touch. You can attach a CV by email after we reply.
+              Send us your details and attach your CV — we'll be in touch shortly.
             </p>
             <form onSubmit={onSubmit} className="mt-6 rounded-2xl border border-border bg-card p-6 sm:p-8">
               {sent ? (
@@ -128,7 +128,18 @@ function Jobs() {
                     </div>
                     <div className="sm:col-span-2">
                       <label className="text-sm font-medium" htmlFor="message">A bit about you</label>
-                      <textarea id="message" name="message" rows={5} maxLength={2000} className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" placeholder="Tell us about your experience and qualifications…" />
+                      <textarea id="message" name="message" rows={4} maxLength={2000} className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" placeholder="Tell us about your experience and qualifications…" />
+                    </div>
+                    <div className="sm:col-span-2">
+                      <label className="text-sm font-medium" htmlFor="cv">CV / Resume</label>
+                      <input
+                        id="cv"
+                        name="cv"
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        className="mt-1.5 w-full cursor-pointer rounded-md border border-input bg-background px-3 py-2 text-sm text-muted-foreground file:mr-3 file:rounded file:border-0 file:bg-accent file:px-3 file:py-1 file:text-xs file:font-semibold file:text-accent-foreground hover:file:bg-accent/90"
+                      />
+                      <p className="mt-1 text-xs text-muted-foreground">PDF, DOC or DOCX — max 5 MB</p>
                     </div>
                   </div>
                   <button type="submit" className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3.5 text-base font-semibold text-accent-foreground hover:bg-accent/90 sm:w-auto">
