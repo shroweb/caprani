@@ -7,7 +7,7 @@ import logo from "@/assets/logo.webp";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-primary pb-16 text-primary-foreground sm:pb-0">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
         <div>
           <img src={logo} alt="Caprani Plumbing & Heating" className="h-10 w-auto" />

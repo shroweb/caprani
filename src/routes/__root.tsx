@@ -167,7 +167,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <SiteHeader />
-      <main className="pb-16 sm:pb-0">
+      <main>
         <Outlet />
       </main>
       <SiteFooter />
