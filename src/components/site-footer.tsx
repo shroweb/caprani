@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { SITE, SERVICES } from "@/lib/site";
 import { FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from "@/components/social-icons";
-import logo from "@/assets/logo.webp";
+import logo from "@/assets/caprani_logo_transparent.png";
 
 
 export function SiteFooter() {
@@ -10,7 +10,7 @@ export function SiteFooter() {
     <footer className="bg-primary pb-16 text-primary-foreground sm:pb-0">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
         <div>
-          <img src={logo} alt="Caprani Plumbing & Heating" className="h-10 w-auto" />
+          <img src={logo} alt="Caprani Plumbing & Heating" className="h-12 w-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" />
           <p className="mt-4 text-sm text-primary-foreground/75">
             Hull's local Gas Safe plumbing and heating specialists. Domestic & commercial,
             24/7 emergency cover across {SITE.area}.

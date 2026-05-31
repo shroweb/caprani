@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { SITE } from "@/lib/site";
-import logo from "@/assets/logo.webp";
+import logo from "@/assets/caprani_logo_transparent.png";
 import { FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from "@/components/social-icons";
 
 const nav = [
