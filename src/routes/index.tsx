@@ -16,11 +16,11 @@ function Home() {
           <img
             src={HERO_IMG}
             alt="The Caprani Plumbing & Heating team outside their Hull shopfront on Spring Bank West"
-            className="h-full w-full object-cover object-[center_35%]"
+            className="h-full w-full object-cover object-[center_55%]"
             fetchPriority="high"
           />
-          {/* subtle bottom-left darken only — not a full overlay */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/55 via-black/20 to-transparent" />
+          {/* left-panel darken so card is readable; right side reveals the team */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/10" />
         </div>
 
         <div className="absolute inset-x-0 bottom-0 px-4 pb-8 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">
