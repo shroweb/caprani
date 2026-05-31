@@ -52,7 +52,7 @@ export const REVIEWS = [
 ] satisfies { name: string; rating: number; text: string; source: "Google" }[];
 
 const IMG = "https://img1.wsimg.com/isteam/ip/19f149d2-47b5-4126-aafc-6b3c594766b3";
-export const HERO_IMG = engineerBoiler;
+export const HERO_IMG = teamShopfront;
 export const TEAM_SHOPFRONT_IMG = teamShopfront;
 export const BADGES_IMG = badgesGasOftec;
 export const VAN_IMG = vanChimney;

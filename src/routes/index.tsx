@@ -15,8 +15,8 @@ function Home() {
         <div className="relative h-[78vh] min-h-[560px] w-full overflow-hidden bg-primary">
           <img
             src={HERO_IMG}
-            alt="Caprani Plumbing & Heating engineer working on copper pipework in Hull"
-            className="h-full w-full object-cover"
+            alt="The Caprani Plumbing & Heating team outside their Hull shopfront on Spring Bank West"
+            className="h-full w-full object-cover object-[center_35%]"
             fetchPriority="high"
           />
           {/* subtle bottom-left darken only — not a full overlay */}
