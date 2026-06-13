@@ -96,38 +96,52 @@ const excluded = [
 function CarePlans() {
   return (
     <>
+      {/* Page hero — dramatic price display */}
       <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <div className="text-sm font-semibold uppercase tracking-wider text-accent">Caprani Care Plans</div>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
+          <span className="section-label text-accent before:bg-accent">Caprani Care Plans</span>
+          <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
             Landlord Care Plan
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-primary-foreground/85">
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-primary-foreground/75">
             Hassle-free property maintenance and compliance in one monthly fee. Built for Hull landlords who want their phone to stop ringing at 11pm.
           </p>
-          <div className="mt-8 flex flex-wrap items-baseline gap-3">
-            <span className="text-5xl font-extrabold sm:text-6xl">£29.99</span>
-            <span className="text-primary-foreground/70">+ VAT / month</span>
-            <span className="rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold text-accent">12-month minimum</span>
+          <div className="mt-10">
+            <div className="flex items-start gap-1">
+              <span className="mt-4 text-2xl font-black text-accent">£</span>
+              <span className="stat-num text-7xl text-primary-foreground sm:text-8xl">29.99</span>
+              <div className="ml-2 mt-5">
+                <div className="text-sm text-primary-foreground/55">+ VAT</div>
+                <div className="text-sm text-primary-foreground/55">/ month</div>
+              </div>
+            </div>
+            <div className="mt-3 inline-flex rounded-full bg-accent/15 px-4 py-1.5 text-xs font-semibold text-accent">
+              12-month minimum · one property
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Two-column: what's in, what's out (asymmetric, content-led, not 3 pricing cards) */}
+      {/* Two-column content */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-3">
-          {/* Included — 2/3 width */}
+          {/* Main content — 2/3 */}
           <div className="lg:col-span-2">
             <Reveal>
-              <h2 className="text-2xl font-bold">What's included</h2>
-              <p className="mt-2 text-sm text-muted-foreground">Cover for one domestic rental property.</p>
+              <h2 className="text-2xl font-black">What's included</h2>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                Cover for one domestic rental property.
+              </p>
               <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-                {included.map((i) => (
-                  <li key={i.t} className="flex gap-3 rounded-xl border border-border bg-card p-5">
+                {included.map((item) => (
+                  <li
+                    key={item.t}
+                    className="flex gap-3 rounded-xl border border-border bg-card p-5"
+                  >
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
                     <div>
-                      <div className="font-semibold text-foreground">{i.t}</div>
-                      <div className="mt-1 text-sm text-muted-foreground">{i.d}</div>
+                      <div className="font-semibold text-foreground">{item.t}</div>
+                      <div className="mt-1 text-sm text-muted-foreground">{item.d}</div>
                     </div>
                   </li>
                 ))}
@@ -135,67 +149,82 @@ function CarePlans() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h3 className="mt-10 text-xl font-bold">Member-only perks</h3>
-              <ul className="mt-4 space-y-2">
+              <h3 className="mt-12 text-xl font-black">Member-only perks</h3>
+              <ul className="mt-4 space-y-2.5">
                 {memberPerks.map((p) => (
-                  <li key={p} className="flex items-start gap-2 text-sm">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" /> {p}
+                  <li key={p} className="flex items-start gap-2.5 text-sm">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                    {p}
                   </li>
                 ))}
               </ul>
             </Reveal>
           </div>
 
-          {/* Sidebar — 1/3 width */}
+          {/* Sticky sidebar — 1/3 */}
           <aside className="lg:col-span-1">
-            <div className="sticky top-24 space-y-5">
-              <div className="rounded-2xl border border-accent bg-card p-6 shadow-xl shadow-accent/10">
-                <div className="text-xs font-semibold uppercase tracking-wider text-accent">Get started</div>
-                <div className="mt-2 text-3xl font-extrabold text-primary">£29.99<span className="text-base font-medium text-muted-foreground"> + VAT/mo</span></div>
+            <div className="sticky top-24 space-y-4">
+              <div className="rounded-2xl border border-accent/30 bg-card p-6 shadow-xl shadow-accent/5">
+                <span className="section-label text-accent before:bg-accent">Get started</span>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="text-xl font-black text-accent">£</span>
+                  <span className="stat-num text-4xl text-primary">29.99</span>
+                  <span className="ml-1 text-sm text-muted-foreground">+ VAT/mo</span>
+                </div>
                 <Link
                   to="/contact"
-                  className="mt-5 inline-flex w-full items-center justify-center rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground hover:bg-accent/90"
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-md bg-accent px-5 py-3.5 text-sm font-bold text-accent-foreground transition-all hover:scale-[1.01] hover:bg-accent/90"
                 >
                   Sign up online
                 </Link>
                 <a
                   href={SITE.phoneHref}
-                  className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground hover:bg-secondary"
+                  className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-background px-5 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
                 >
                   <Phone className="h-4 w-4" /> {SITE.phone}
                 </a>
                 <ul className="mt-5 space-y-2 border-t border-border pt-4 text-xs text-muted-foreground">
-                  <li className="flex items-center gap-2"><Clock className="h-3.5 w-3.5 text-accent" /> 2-hour emergency response</li>
-                  <li className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-accent" /> Gas Safe No. {SITE.gasSafe}</li>
+                  <li className="flex items-center gap-2">
+                    <Clock className="h-3.5 w-3.5 text-accent" /> 2-hour emergency response
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <ShieldCheck className="h-3.5 w-3.5 text-accent" /> Gas Safe No. {SITE.gasSafe}
+                  </li>
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-border bg-secondary/40 p-5 text-xs text-muted-foreground">
-                Full exclusions listed below — we'll walk you through everything before you sign.
+              <div className="rounded-2xl border border-border bg-secondary/40 p-5 text-xs leading-relaxed text-muted-foreground">
+                Full exclusions are listed below. We'll walk you through everything before you sign — no surprises.
               </div>
             </div>
           </aside>
         </div>
       </section>
 
-      {/* Full exclusions */}
-      <section className="border-t border-border bg-secondary/30">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      {/* Exclusions */}
+      <section className="border-t border-border bg-secondary/25">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <Reveal>
-            <h2 className="text-xl font-bold">What's not covered</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <h2 className="text-xl font-black">What's not covered</h2>
+            <p className="mt-1.5 text-sm text-muted-foreground">
               We'll go through all of this before you sign — no surprises.
             </p>
           </Reveal>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {excluded.map((cat, i) => (
-              <Reveal key={cat.category} delay={i * 60}>
+              <Reveal key={cat.category} delay={i * 55}>
                 <div className="rounded-xl border border-border bg-card p-5">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-accent">{cat.category}</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-accent">
+                    {cat.category}
+                  </h3>
                   <ul className="mt-3 space-y-1.5">
                     {cat.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
-                        <X className="mt-0.5 h-3.5 w-3.5 shrink-0" /> {item}
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-xs text-muted-foreground"
+                      >
+                        <X className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground/50" />{" "}
+                        {item}
                       </li>
                     ))}
                   </ul>

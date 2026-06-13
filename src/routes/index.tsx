@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, ShieldCheck, Clock, BadgeCheck, Star, ArrowRight, ExternalLink } from "lucide-react";
+import { Phone, ArrowRight, Star, ExternalLink } from "lucide-react";
 import { SITE, SERVICES, HERO_IMG, REVIEWS } from "@/lib/site";
 import { GoogleIcon } from "@/components/social-icons";
 import { Reveal } from "@/components/reveal";
@@ -8,44 +8,46 @@ import { CtaBand } from "@/components/cta-band";
 export const Route = createFileRoute("/")({ component: Home });
 
 function Home() {
+  const yearsSince = new Date().getFullYear() - SITE.founded;
+
   return (
     <>
-      {/* HERO — full-bleed real photo, solid info card bottom-left (no gradient wash) */}
+      {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section className="relative">
-        <div className="relative h-[78vh] min-h-[560px] w-full overflow-hidden bg-primary">
+        <div className="relative h-[84vh] min-h-[580px] w-full overflow-hidden bg-primary">
           <img
             src={HERO_IMG}
             alt="The Caprani Plumbing & Heating team outside their Hull shopfront on Spring Bank West"
             className="h-full w-full object-cover object-[center_55%]"
             fetchPriority="high"
           />
-          {/* left-panel darken so card is readable; right side reveals the team */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-black/10" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 px-4 pb-8 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-xl rounded-2xl border border-white/10 bg-primary/95 p-6 text-primary-foreground shadow-2xl backdrop-blur sm:p-8 animate-fade-up">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-                24/7 Emergency Call-Outs
+            <div className="max-w-[520px] animate-fade-up">
+              <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-widest text-white/60">
+                <span className="h-px w-8 shrink-0 bg-white/40" />
+                Hull &amp; East Yorkshire · Est. {SITE.founded}
               </div>
-              <h1 className="mt-3 text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl">
-                Your local plumbing & heating team in Hull
+              <h1 className="mt-4 text-5xl font-black leading-[1.02] tracking-tight text-white sm:text-6xl">
+                Your local<br />plumbing &amp;<br />heating team
               </h1>
-              <p className="mt-3 text-primary-foreground/80">
-                Family-run since {SITE.founded}. Gas Safe registered. Boiler packed in or pipe gone? Give us a ring — we'll pick up.
+              <p className="mt-5 max-w-[380px] text-base leading-relaxed text-white/70">
+                Gas Safe registered. Family-run. Boiler packed in or a pipe gone?
+                Give us a ring — we'll pick up.
               </p>
-              <div className="mt-5 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href={SITE.phoneHref}
-                  className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:scale-[1.02]"
+                  className="inline-flex items-center gap-2.5 rounded-md bg-accent px-6 py-3.5 text-sm font-bold text-accent-foreground shadow-2xl shadow-accent/30 transition-all hover:scale-[1.02] hover:shadow-accent/50"
                 >
-                  <Phone className="h-4 w-4" /> Call {SITE.phone}
+                  <Phone className="h-4 w-4" /> {SITE.phone}
                 </a>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/25 bg-primary-foreground/5 px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-foreground/10"
+                  className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/15"
                 >
                   Book online <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -55,128 +57,88 @@ function Home() {
         </div>
       </section>
 
-      {/* TRUST BAR */}
-      <section className="border-b border-border bg-secondary/40">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 gap-y-5 px-4 py-6 sm:px-6 md:grid-cols-4 lg:px-8">
-          <Trust icon={ShieldCheck} label="Gas Safe Registered" value={`No. ${SITE.gasSafe}`} />
-          <Trust icon={BadgeCheck} label="OFTEC Registered" value={`No. ${SITE.oftec}`} />
-          <Trust icon={Clock} label="Emergency Cover" value="24/7, 365 days" />
-          <a
-            href={SITE.google.reviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 hover:opacity-80"
-          >
-            <GoogleIcon className="h-5 w-5 shrink-0" />
-            <div>
-              <div className="flex items-center gap-1">
-                <span className="text-sm font-semibold leading-tight text-foreground">{SITE.google.rating}</span>
-                <div className="flex">
-                  {[0,1,2,3,4].map(i => <Star key={i} className="h-3 w-3 fill-accent text-accent" />)}
-                </div>
-              </div>
-              <div className="text-xs text-muted-foreground">{SITE.google.reviewCount} Google reviews</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      {/* REVIEWS */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <Reveal>
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <div className="text-sm font-semibold uppercase tracking-wider text-accent">Customer reviews</div>
-                <h2 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">What Hull customers say</h2>
-              </div>
-              <a
-                href={SITE.google.reviewsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm transition-colors hover:border-accent/50 hover:bg-secondary"
-              >
-                <GoogleIcon className="h-4 w-4 shrink-0" />
-                <span className="font-bold">{SITE.google.rating}</span>
-                <div className="flex">
-                  {[0,1,2,3,4].map(i => <Star key={i} className="h-3.5 w-3.5 fill-accent text-accent" />)}
-                </div>
-                <span className="text-muted-foreground">{SITE.google.reviewCount} reviews</span>
-                <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
-              </a>
-            </div>
-          </Reveal>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {REVIEWS.map((r, i) => (
-              <Reveal key={r.name} delay={i * 70}>
-                <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm">
-                  <div className="flex">
-                    {Array.from({ length: r.rating }).map((_, j) => (
-                      <Star key={j} className="h-4 w-4 fill-accent text-accent" />
-                    ))}
-                  </div>
-                  <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground">
-                    "{r.text}"
-                  </blockquote>
-                  <figcaption className="mt-4 text-sm font-semibold text-muted-foreground">— {r.name}</figcaption>
-                </figure>
-              </Reveal>
-            ))}
+      {/* ── STATS STRIP ───────────────────────────────────────────────── */}
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <StatItem
+              num={String(SITE.google.reviewCount)}
+              label="Google Reviews"
+              detail="All verified customers"
+              href={SITE.google.reviewsUrl}
+            />
+            <StatItem
+              num={`${SITE.google.rating}★`}
+              label="Average Rating"
+              detail="Out of 5 on Google"
+              href={SITE.google.reviewsUrl}
+            />
+            <StatItem
+              num={String(yearsSince)}
+              label="Years in Hull"
+              detail={`Est. ${SITE.founded} · family-run`}
+            />
+            <StatItem
+              num="24/7"
+              label="Emergency Cover"
+              detail="365 days, bank holidays"
+            />
           </div>
-          <Reveal delay={120}>
-            <div className="mt-6 text-center">
-              <Link to="/testimonials" className="text-sm font-semibold text-accent hover:underline">
-                See all reviews →
-              </Link>
-            </div>
-          </Reveal>
         </div>
       </section>
 
-      {/* SERVICES — asymmetric layout. Left: sticky intro. Right: large image-led list (no generic icons) */}
-      <section className="bg-secondary/30">
+      {/* ── SERVICES ──────────────────────────────────────────────────── */}
+      <section className="bg-secondary/25">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-12">
+          <div className="grid gap-14 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <div className="lg:sticky lg:top-24">
-                <div className="text-sm font-semibold uppercase tracking-wider text-accent">Our work</div>
-                <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-                  What we do, day in day out
-                </h2>
-                <p className="mt-4 text-muted-foreground">
-                  From a new bathroom suite to an emergency 2am call-out — domestic and commercial, across Hull and East Yorkshire.
-                </p>
-                <Link
-                  to="/services"
-                  className="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
-                >
-                  All services <ArrowRight className="h-4 w-4" />
-                </Link>
+                <Reveal>
+                  <span className="section-label">Our work</span>
+                  <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">
+                    What we do,<br />day in day out
+                  </h2>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">
+                    Domestic and commercial, across Hull and East Yorkshire. New boiler, full bathroom, or a 2am emergency.
+                  </p>
+                  <Link
+                    to="/services"
+                    className="mt-7 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                  >
+                    All services <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Reveal>
               </div>
             </div>
 
             <div className="lg:col-span-8">
-              <ul className="grid gap-5 sm:grid-cols-2">
+              <ul className="grid gap-4 sm:grid-cols-2">
                 {SERVICES.map((s, i) => (
-                  <Reveal key={s.slug} delay={i * 50}>
+                  <Reveal key={s.slug} delay={i * 45}>
                     <Link
                       to="/services/$slug"
                       params={{ slug: s.slug }}
-                      className="group block overflow-hidden rounded-xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg"
+                      className="group relative block overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/8 hover:border-accent/25"
                     >
-                      <div className="aspect-[4/3] overflow-hidden bg-secondary">
+                      <div className="aspect-video overflow-hidden bg-secondary">
                         <img
                           src={s.image}
                           alt={s.title}
                           loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                       </div>
+                      <div className="absolute left-4 top-4 flex h-7 w-7 items-center justify-center rounded bg-primary/80 text-[11px] font-black text-primary-foreground backdrop-blur-sm">
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
                       <div className="p-5">
-                        <h3 className="text-base font-semibold text-foreground">{s.title}</h3>
-                        <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">{s.short}</p>
+                        <h3 className="font-bold text-foreground">{s.title}</h3>
+                        <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+                          {s.short}
+                        </p>
                         <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent">
-                          Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          Learn more{" "}
+                          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                         </span>
                       </div>
                     </Link>
@@ -188,19 +150,207 @@ function Home() {
         </div>
       </section>
 
+      {/* ── HOW IT WORKS ──────────────────────────────────────────────── */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <Reveal>
+            <span className="section-label text-accent before:bg-accent">How a job works</span>
+            <h2 className="mt-4 text-3xl font-black sm:text-4xl">Simple from start to finish</h2>
+          </Reveal>
+          <div className="mt-14 grid gap-10 sm:grid-cols-3">
+            <ProcessStep
+              num="01"
+              title="You ring us"
+              desc="Any time, any day. Someone picks up — or calls back within the hour. No hold music, no chatbot."
+            />
+            <ProcessStep
+              num="02"
+              title="We come to you"
+              desc="Same-day for emergencies. We diagnose, give you a fixed price, and won't start until you're happy with it."
+            />
+            <ProcessStep
+              num="03"
+              title="Fixed and guaranteed"
+              desc="The invoice matches the quote. Every job carries a 12-month workmanship guarantee. Gas Safe paperwork left with you."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHY CAPRANI ───────────────────────────────────────────────── */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <Reveal>
+            <span className="section-label">Why choose us</span>
+            <h2 className="mt-4 text-3xl font-black sm:text-4xl">
+              What makes us<br />different
+            </h2>
+          </Reveal>
+          <div className="mt-12 grid gap-10 sm:grid-cols-3">
+            {[
+              {
+                title: "We pick up the phone",
+                desc: "Our engineers carry their own phones. You'll reach a real person — not a call centre, not a voicemail.",
+              },
+              {
+                title: "The price you're quoted is the price you pay",
+                desc: "We give written fixed prices before any work starts. The invoice won't surprise you.",
+              },
+              {
+                title: "Gas Safe, every single time",
+                desc: "Every gas job is done by a registered engineer. Certificates issued on the day, left with you in writing.",
+              },
+            ].map((p, i) => (
+              <Reveal key={p.title} delay={i * 80}>
+                <div className="border-l-2 border-accent py-1 pl-6">
+                  <h3 className="text-lg font-bold text-foreground">{p.title}</h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── REVIEWS ───────────────────────────────────────────────────── */}
+      <section className="bg-secondary/25">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <span className="section-label">Customer reviews</span>
+                <h2 className="mt-4 text-3xl font-black sm:text-4xl">What Hull customers say</h2>
+              </div>
+              <a
+                href={SITE.google.reviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm transition-colors hover:border-accent/40 hover:bg-card"
+              >
+                <GoogleIcon className="h-4 w-4 shrink-0" />
+                <span className="font-bold">{SITE.google.rating}</span>
+                <div className="flex">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <Star key={i} className="h-3.5 w-3.5 fill-accent text-accent" />
+                  ))}
+                </div>
+                <span className="text-muted-foreground">{SITE.google.reviewCount} reviews</span>
+                <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
+              </a>
+            </div>
+          </Reveal>
+
+          {/* Featured review */}
+          <Reveal delay={80}>
+            <figure className="mt-8 overflow-hidden rounded-2xl bg-primary px-8 py-10 text-primary-foreground sm:px-12 sm:py-14">
+              <div className="select-none text-[7rem] font-black leading-none text-accent/20 sm:text-[9rem]">
+                "
+              </div>
+              <blockquote className="-mt-6 text-xl font-medium leading-relaxed sm:text-2xl">
+                {REVIEWS[0].text}
+              </blockquote>
+              <figcaption className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="flex">
+                  {Array.from({ length: REVIEWS[0].rating }).map((_, j) => (
+                    <Star key={j} className="h-4 w-4 fill-accent text-accent" />
+                  ))}
+                </div>
+                <span className="font-semibold">{REVIEWS[0].name}</span>
+                <span className="text-sm text-primary-foreground/50">via Google</span>
+              </figcaption>
+            </figure>
+          </Reveal>
+
+          {/* Supporting reviews */}
+          {REVIEWS.length > 1 && (
+            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              {REVIEWS.slice(1).map((r, i) => (
+                <Reveal key={r.name} delay={i * 60}>
+                  <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm">
+                    <div className="flex">
+                      {Array.from({ length: r.rating }).map((_, j) => (
+                        <Star key={j} className="h-4 w-4 fill-accent text-accent" />
+                      ))}
+                    </div>
+                    <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground">
+                      "{r.text}"
+                    </blockquote>
+                    <figcaption className="mt-4 text-sm font-semibold text-muted-foreground">
+                      — {r.name}
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              ))}
+            </div>
+          )}
+
+          <Reveal delay={120}>
+            <div className="mt-8 text-center">
+              <Link
+                to="/testimonials"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+              >
+                See all reviews <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <CtaBand />
     </>
   );
 }
 
-function Trust({ icon: Icon, label, value }: { icon: React.ComponentType<{ className?: string }>; label: string; value: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <Icon className="h-5 w-5 shrink-0 text-accent" />
-      <div>
-        <div className="text-sm font-semibold leading-tight text-foreground">{label}</div>
-        <div className="text-xs text-muted-foreground">{value}</div>
-      </div>
+function StatItem({
+  num,
+  label,
+  detail,
+  href,
+}: {
+  num: string;
+  label: string;
+  detail: string;
+  href?: string;
+}) {
+  const inner = (
+    <div>
+      <div className="stat-num text-4xl text-primary sm:text-5xl">{num}</div>
+      <div className="mt-2 text-sm font-semibold text-foreground">{label}</div>
+      <div className="mt-0.5 text-xs text-muted-foreground">{detail}</div>
     </div>
+  );
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="transition-opacity hover:opacity-75"
+      >
+        {inner}
+      </a>
+    );
+  }
+  return inner;
+}
+
+function ProcessStep({
+  num,
+  title,
+  desc,
+}: {
+  num: string;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <Reveal>
+      <div className="border-t border-primary-foreground/15 pt-8 first:border-t-0 first:pt-0 sm:border-l sm:border-t-0 sm:pl-10 sm:pt-0 sm:first:border-l-0 sm:first:pl-0">
+        <div className="select-none text-6xl font-black leading-none text-accent/25">{num}</div>
+        <h3 className="mt-4 text-xl font-bold">{title}</h3>
+        <p className="mt-2.5 text-sm leading-relaxed text-primary-foreground/70">{desc}</p>
+      </div>
+    </Reveal>
   );
 }
