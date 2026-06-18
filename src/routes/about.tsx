@@ -3,6 +3,7 @@ import { ShieldCheck, BadgeCheck } from "lucide-react";
 import { SITE, TEAM, DIRECTOR_QUOTE } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
+import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/about")({
   component: About,
@@ -34,6 +35,7 @@ function About() {
             based in Hull — dedicated to domestic and commercial clients across the city and East
             Yorkshire.
           </p>
+          <GoogleRating className="mt-7" />
         </div>
       </section>
 

@@ -25,7 +25,7 @@ export const SITE = {
   director: "Nathan Caprani",
   google: {
     rating: 4.9,
-    reviewCount: 183,
+    reviewCount: 188,
     reviewsUrl: "https://www.google.com/maps/place/Caprani+Plumbing+%26+Heating+Limited/",
   },
   social: {
@@ -44,9 +44,21 @@ export const REVIEWS = [
     source: "Google" as const,
   },
   {
-    name: "Zachary Ashworth",
+    name: "Chris Johnson",
     rating: 5,
-    text: "Big thanks to Nathan for fixing our leaking bathroom! Very knowledgeable, confident and skilled in his trade — 10/10 would come to these guys for any issue that needs sorting.",
+    text: "I had Caprani in to install me a new combi boiler and take my cylinder out. Fantastic work by Nathan and George. Matt in the office was a great help as well.",
+    source: "Google" as const,
+  },
+  {
+    name: "Julia Challen",
+    rating: 5,
+    text: "Really well organised, polite and excellent service. I was really pleased with the attention to detail which meant my new radiator and sink were fitted without me having to replace my floor covering. Also no mess. Thank you.",
+    source: "Google" as const,
+  },
+  {
+    name: "Annizzamatriz Neal",
+    rating: 5,
+    text: "Caprani had an efficient telephone service for booking the appointment and the engineer quickly found the fault with my boiler, fixed it straight away and serviced the boiler. He was very polite, friendly and courteous.",
     source: "Google" as const,
   },
 ] satisfies { name: string; rating: number; text: string; source: "Google" }[];

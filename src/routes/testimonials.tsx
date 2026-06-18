@@ -4,6 +4,7 @@ import { SITE, REVIEWS } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleIcon } from "@/components/social-icons";
+import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/testimonials")({
   component: Testimonials,
@@ -28,32 +29,13 @@ function Testimonials() {
             We don't make these up. See the latest reviews and job photos on our Facebook, Instagram
             and Google pages.
           </p>
-          <a
-            href={SITE.google.reviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-3 rounded-md border border-primary-foreground/15 bg-primary-foreground/5 px-5 py-3 transition-colors hover:bg-primary-foreground/10"
-          >
-            <GoogleIcon className="h-5 w-5 shrink-0" />
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-black">{SITE.google.rating}</span>
-              <div className="flex">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <Star key={i} className="h-4 w-4 fill-accent text-accent" />
-                ))}
-              </div>
-              <span className="text-sm text-primary-foreground/65">
-                {SITE.google.reviewCount} Google reviews
-              </span>
-            </div>
-            <ExternalLink className="h-4 w-4 shrink-0 text-primary-foreground/40" />
-          </a>
+          <GoogleRating className="mt-8" />
         </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal>
-          <h2 className="text-2xl font-black">Verified Google reviews</h2>
+          <h2 className="text-2xl font-black">Recent Google reviews</h2>
         </Reveal>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2">

@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Phone, ShieldCheck, Wrench, HelpCircle } from "lucide-react";
 import { SERVICES, SERVICE_DETAILS, SITE } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
+import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/services/$slug")({
   component: ServiceDetail,
@@ -59,6 +60,7 @@ function ServiceDetail() {
           <p className="mt-4 max-w-2xl text-lg text-primary-foreground/85">
             {details?.intro ?? service.short}
           </p>
+          <GoogleRating className="mt-6" />
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/contact"

@@ -4,6 +4,7 @@ import { SITE, SERVICES, HERO_IMG, REVIEWS } from "@/lib/site";
 import { GoogleIcon } from "@/components/social-icons";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
+import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/")({ component: Home });
 
@@ -39,6 +40,7 @@ function Home() {
                 Family-run Gas Safe engineers serving Hull and East Yorkshire from Spring Bank West
                 since {SITE.founded}.
               </p>
+              <GoogleRating className="mt-7" />
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href={SITE.phoneHref}
@@ -70,7 +72,7 @@ function Home() {
             <StatItem
               num={String(SITE.google.reviewCount)}
               label="Google Reviews"
-              detail="All verified customers"
+              detail="Latest Google profile count"
               href={SITE.google.reviewsUrl}
             />
             <StatItem

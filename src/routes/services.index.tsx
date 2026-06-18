@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
+import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/services/")({
   component: ServicesIndex,
@@ -35,6 +36,7 @@ function ServicesIndex() {
             Whatever you need — a new boiler, a leak fixed, or a full bathroom refit — our Hull team
             handles it from start to finish.
           </p>
+          <GoogleRating className="mt-7" />
         </div>
       </section>
 

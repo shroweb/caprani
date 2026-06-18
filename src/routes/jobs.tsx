@@ -3,6 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { Briefcase, MapPin, Clock, Check } from "lucide-react";
 import { Reveal } from "@/components/reveal";
+import { GoogleRating } from "@/components/google-rating";
 
 const vacancies = [
   {
@@ -79,6 +80,7 @@ function Jobs() {
             We're growing — and we're always keen to hear from talented engineers and apprentices
             who take pride in their work.
           </p>
+          <GoogleRating className="mt-7" />
         </div>
       </section>
 

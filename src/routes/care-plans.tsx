@@ -3,6 +3,7 @@ import { Check, X, Clock, ShieldCheck, Phone } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
+import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/care-plans")({
   component: CarePlans,
@@ -110,6 +111,7 @@ function CarePlans() {
             Hassle-free property maintenance and compliance in one monthly fee. Built for Hull
             landlords who want their phone to stop ringing at 11pm.
           </p>
+          <GoogleRating className="mt-7" />
           <div className="mt-10">
             <div className="flex items-start gap-1">
               <span className="mt-4 text-2xl font-black text-accent">£</span>

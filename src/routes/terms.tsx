@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SITE } from "@/lib/site";
+import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/terms")({
   component: Terms,
@@ -66,6 +67,7 @@ function Terms() {
           <p className="mt-4 max-w-2xl text-primary-foreground/80">
             {SITE.legalName} · {SITE.address}
           </p>
+          <GoogleRating className="mt-7" />
         </div>
       </section>
 

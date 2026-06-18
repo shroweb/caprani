@@ -4,6 +4,7 @@ import { z } from "zod";
 import { Phone, Mail, MapPin, Check, Clock } from "lucide-react";
 import { SITE, SERVICES } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
+import { GoogleRating } from "@/components/google-rating";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80),
@@ -63,6 +64,7 @@ function Contact() {
             Tell us what you need and a preferred date — we'll be in touch the same day. For
             emergencies, please call us directly.
           </p>
+          <GoogleRating className="mt-7" />
         </div>
       </section>
 
