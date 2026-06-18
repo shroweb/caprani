@@ -18,11 +18,11 @@ const nav = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 w-full bg-primary text-white">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-primary/95 text-white shadow-[0_8px_30px_rgba(3,10,22,0.16)] backdrop-blur">
       {/* Top utility bar */}
       <div className="hidden border-b border-white/10 sm:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1.5 text-xs sm:px-6 lg:px-8">
-          <div className="flex items-center gap-5 text-white/55">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs sm:px-6 lg:px-8">
+          <div className="flex items-center gap-5 text-white/62">
             <a
               href={SITE.phoneHref}
               className="flex items-center gap-1.5 transition-colors hover:text-white"
@@ -36,7 +36,7 @@ export function SiteHeader() {
               {SITE.email}
             </a>
           </div>
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-4">
             {[
               { href: SITE.social.facebook, Icon: FacebookIcon, label: "Facebook" },
               { href: SITE.social.instagram, Icon: InstagramIcon, label: "Instagram" },
@@ -59,22 +59,18 @@ export function SiteHeader() {
       </div>
 
       {/* Main nav */}
-      <div className="border-b border-white/10">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div>
+        <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center" aria-label="Caprani Plumbing & Heating">
-            <img
-              src={logo}
-              alt="Caprani Plumbing & Heating"
-              className="h-10 w-auto sm:h-11"
-            />
+            <img src={logo} alt="Caprani Plumbing & Heating" className="h-11 w-auto sm:h-12" />
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-1 rounded-md border border-white/10 bg-white/[0.04] p-1 lg:flex">
             {nav.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
-                className="relative text-sm font-medium text-white/75 transition-colors hover:text-white after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full [&.active]:text-white [&.active]:after:w-full [&.active]:after:bg-accent"
+                className="rounded px-3 py-2 text-sm font-medium text-white/72 transition-colors hover:bg-white/8 hover:text-white [&.active]:bg-white/10 [&.active]:text-white"
                 activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
@@ -85,16 +81,16 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <a
               href={SITE.phoneHref}
-              className="hidden items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:flex"
+              className="hidden items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-white/78 transition-colors hover:bg-white/10 hover:text-white sm:flex"
             >
               <Phone className="h-4 w-4" />
               {SITE.phone}
             </a>
             <Link
               to="/contact"
-              className="hidden rounded-md bg-accent px-4 py-2.5 text-sm font-bold text-accent-foreground shadow-sm transition-all hover:scale-[1.02] hover:bg-accent/90 sm:inline-flex"
+              className="hidden rounded-md bg-accent px-4 py-2.5 text-sm font-bold text-accent-foreground shadow-sm transition-colors hover:bg-accent/90 sm:inline-flex"
             >
-              Book Now
+              Book now
             </Link>
             <a
               href={SITE.phoneHref}
@@ -118,13 +114,13 @@ export function SiteHeader() {
       {/* Mobile menu */}
       {open && (
         <div className="border-t border-white/10 bg-primary lg:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col gap-0.5 px-4 py-3">
+          <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
             {nav.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white [&.active]:text-accent"
+                className="rounded-md px-3 py-3 text-sm font-medium text-white/82 transition-colors hover:bg-white/10 hover:text-white [&.active]:bg-white/10 [&.active]:text-white"
                 activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
@@ -135,7 +131,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-md bg-accent px-3 py-3 text-center text-sm font-bold text-accent-foreground"
             >
-              Book Now
+              Book now
             </Link>
           </nav>
         </div>

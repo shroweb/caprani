@@ -14,43 +14,49 @@ function Home() {
     <>
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section className="relative">
-        <div className="relative h-[84vh] min-h-[580px] w-full overflow-hidden bg-primary">
+        <div className="relative h-[86vh] min-h-[620px] w-full overflow-hidden bg-primary">
           <img
             src={HERO_IMG}
             alt="The Caprani Plumbing & Heating team outside their Hull shopfront on Spring Bank West"
             className="h-full w-full object-cover object-[center_55%]"
             fetchPriority="high"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/88 via-black/56 to-black/12" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-primary/85 to-transparent" />
         </div>
 
         <div className="absolute inset-x-0 bottom-0 px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-[520px] animate-fade-up">
-              <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-widest text-white/60">
-                <span className="h-px w-8 shrink-0 bg-white/40" />
-                Hull &amp; East Yorkshire · Est. {SITE.founded}
-              </div>
-              <h1 className="mt-4 text-5xl font-black leading-[1.02] tracking-tight text-white sm:text-6xl">
-                Your local<br />plumbing &amp;<br />heating team
+            <div className="max-w-[580px] animate-fade-up">
+              <h1 className="text-5xl font-black leading-[1.01] text-white sm:text-6xl lg:text-7xl">
+                Your local
+                <br />
+                plumbing &amp;
+                <br />
+                heating team
               </h1>
-              <p className="mt-5 max-w-[380px] text-base leading-relaxed text-white/70">
-                Gas Safe registered. Family-run. Boiler packed in or a pipe gone?
-                Give us a ring — we'll pick up.
+              <p className="mt-6 max-w-[430px] text-base leading-8 text-white/74 sm:text-lg">
+                Family-run Gas Safe engineers serving Hull and East Yorkshire from Spring Bank West
+                since {SITE.founded}.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href={SITE.phoneHref}
-                  className="inline-flex items-center gap-2.5 rounded-md bg-accent px-6 py-3.5 text-sm font-bold text-accent-foreground shadow-2xl shadow-accent/30 transition-all hover:scale-[1.02] hover:shadow-accent/50"
+                  className="inline-flex items-center gap-2.5 rounded-md bg-accent px-6 py-3.5 text-sm font-bold text-accent-foreground shadow-2xl shadow-accent/25 transition-colors hover:bg-accent/90"
                 >
                   <Phone className="h-4 w-4" /> {SITE.phone}
                 </a>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/15"
+                  className="inline-flex items-center gap-2 rounded-md border border-white/22 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/15"
                 >
                   Book online <ArrowRight className="h-4 w-4" />
                 </Link>
+              </div>
+              <div className="mt-9 grid max-w-xl grid-cols-3 gap-4 border-t border-white/16 pt-5 text-xs text-white/68">
+                <span>Gas Safe {SITE.gasSafe}</span>
+                <span>OFTEC {SITE.oftec}</span>
+                <span>24/7 emergency cover</span>
               </div>
             </div>
           </div>
@@ -59,8 +65,8 @@ function Home() {
 
       {/* ── STATS STRIP ───────────────────────────────────────────────── */}
       <section className="border-b border-border bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 divide-x divide-y divide-border border-x border-border md:grid-cols-4 md:divide-y-0">
             <StatItem
               num={String(SITE.google.reviewCount)}
               label="Google Reviews"
@@ -78,28 +84,26 @@ function Home() {
               label="Years in Hull"
               detail={`Est. ${SITE.founded} · family-run`}
             />
-            <StatItem
-              num="24/7"
-              label="Emergency Cover"
-              detail="365 days, bank holidays"
-            />
+            <StatItem num="24/7" label="Emergency Cover" detail="365 days, bank holidays" />
           </div>
         </div>
       </section>
 
       {/* ── SERVICES ──────────────────────────────────────────────────── */}
-      <section className="bg-secondary/25">
+      <section className="bg-secondary/45">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <div className="lg:sticky lg:top-24">
                 <Reveal>
-                  <span className="section-label">Our work</span>
-                  <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">
-                    What we do,<br />day in day out
+                  <h2 className="text-3xl font-black sm:text-4xl">
+                    What we do,
+                    <br />
+                    day in day out
                   </h2>
                   <p className="mt-4 leading-relaxed text-muted-foreground">
-                    Domestic and commercial, across Hull and East Yorkshire. New boiler, full bathroom, or a 2am emergency.
+                    Domestic and commercial, across Hull and East Yorkshire. New boiler, full
+                    bathroom, or a 2am emergency.
                   </p>
                   <Link
                     to="/services"
@@ -118,7 +122,7 @@ function Home() {
                     <Link
                       to="/services/$slug"
                       params={{ slug: s.slug }}
-                      className="group relative block overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/8 hover:border-accent/25"
+                      className="service-card group relative block h-full overflow-hidden rounded-md"
                     >
                       <div className="aspect-video overflow-hidden bg-secondary">
                         <img
@@ -128,7 +132,7 @@ function Home() {
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                       </div>
-                      <div className="absolute left-4 top-4 flex h-7 w-7 items-center justify-center rounded bg-primary/80 text-[11px] font-black text-primary-foreground backdrop-blur-sm">
+                      <div className="absolute left-4 top-4 flex h-7 w-7 items-center justify-center rounded bg-primary/85 text-[11px] font-black text-primary-foreground backdrop-blur-sm">
                         {String(i + 1).padStart(2, "0")}
                       </div>
                       <div className="p-5">
@@ -154,10 +158,9 @@ function Home() {
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <Reveal>
-            <span className="section-label text-accent before:bg-accent">How a job works</span>
-            <h2 className="mt-4 text-3xl font-black sm:text-4xl">Simple from start to finish</h2>
+            <h2 className="text-3xl font-black sm:text-4xl">Simple from start to finish</h2>
           </Reveal>
-          <div className="mt-14 grid gap-10 sm:grid-cols-3">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-primary-foreground/12 bg-primary-foreground/12 sm:grid-cols-3">
             <ProcessStep
               num="01"
               title="You ring us"
@@ -181,9 +184,10 @@ function Home() {
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <Reveal>
-            <span className="section-label">Why choose us</span>
-            <h2 className="mt-4 text-3xl font-black sm:text-4xl">
-              What makes us<br />different
+            <h2 className="text-3xl font-black sm:text-4xl">
+              What makes us
+              <br />
+              different
             </h2>
           </Reveal>
           <div className="mt-12 grid gap-10 sm:grid-cols-3">
@@ -213,19 +217,18 @@ function Home() {
       </section>
 
       {/* ── REVIEWS ───────────────────────────────────────────────────── */}
-      <section className="bg-secondary/25">
+      <section className="bg-secondary/45">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <Reveal>
             <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <span className="section-label">Customer reviews</span>
-                <h2 className="mt-4 text-3xl font-black sm:text-4xl">What Hull customers say</h2>
+                <h2 className="text-3xl font-black sm:text-4xl">What Hull customers say</h2>
               </div>
               <a
                 href={SITE.google.reviewsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm transition-colors hover:border-accent/40 hover:bg-card"
+                className="inline-flex shrink-0 items-center gap-2 rounded-md border border-border bg-card px-4 py-2.5 text-sm transition-colors hover:border-accent/40 hover:bg-card"
               >
                 <GoogleIcon className="h-4 w-4 shrink-0" />
                 <span className="font-bold">{SITE.google.rating}</span>
@@ -242,7 +245,7 @@ function Home() {
 
           {/* Featured review */}
           <Reveal delay={80}>
-            <figure className="mt-8 overflow-hidden rounded-2xl bg-primary px-8 py-10 text-primary-foreground sm:px-12 sm:py-14">
+            <figure className="mt-8 overflow-hidden rounded-md bg-primary px-8 py-10 text-primary-foreground sm:px-12 sm:py-14">
               <div className="select-none text-[7rem] font-black leading-none text-accent/20 sm:text-[9rem]">
                 "
               </div>
@@ -266,17 +269,17 @@ function Home() {
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
               {REVIEWS.slice(1).map((r, i) => (
                 <Reveal key={r.name} delay={i * 60}>
-                  <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm">
+                  <figure className="flex h-full flex-col rounded-md border border-border bg-card p-6 shadow-sm">
                     <div className="flex">
                       {Array.from({ length: r.rating }).map((_, j) => (
                         <Star key={j} className="h-4 w-4 fill-accent text-accent" />
                       ))}
                     </div>
                     <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground">
-                      "{r.text}"
+                      {r.text}
                     </blockquote>
                     <figcaption className="mt-4 text-sm font-semibold text-muted-foreground">
-                      — {r.name}
+                      {r.name}
                     </figcaption>
                   </figure>
                 </Reveal>
@@ -314,7 +317,7 @@ function StatItem({
   href?: string;
 }) {
   const inner = (
-    <div>
+    <div className="px-4 py-5 sm:px-6">
       <div className="stat-num text-4xl text-primary sm:text-5xl">{num}</div>
       <div className="mt-2 text-sm font-semibold text-foreground">{label}</div>
       <div className="mt-0.5 text-xs text-muted-foreground">{detail}</div>
@@ -335,19 +338,11 @@ function StatItem({
   return inner;
 }
 
-function ProcessStep({
-  num,
-  title,
-  desc,
-}: {
-  num: string;
-  title: string;
-  desc: string;
-}) {
+function ProcessStep({ num, title, desc }: { num: string; title: string; desc: string }) {
   return (
     <Reveal>
-      <div className="border-t border-primary-foreground/15 pt-8 first:border-t-0 first:pt-0 sm:border-l sm:border-t-0 sm:pl-10 sm:pt-0 sm:first:border-l-0 sm:first:pl-0">
-        <div className="select-none text-6xl font-black leading-none text-accent/25">{num}</div>
+      <div className="h-full bg-primary px-6 py-8 sm:px-8">
+        <div className="select-none text-5xl font-black leading-none text-accent/35">{num}</div>
         <h3 className="mt-4 text-xl font-bold">{title}</h3>
         <p className="mt-2.5 text-sm leading-relaxed text-primary-foreground/70">{desc}</p>
       </div>

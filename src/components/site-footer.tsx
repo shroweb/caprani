@@ -8,8 +8,8 @@ export function SiteFooter() {
   return (
     <footer className="bg-primary pb-16 text-primary-foreground sm:pb-0">
       {/* Credentials trust strip */}
-      <div className="border-b border-primary-foreground/10 bg-primary-foreground/[0.04]">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-8 gap-y-3 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="border-b border-primary-foreground/10 bg-primary-foreground/[0.035]">
+        <div className="mx-auto grid max-w-7xl gap-3 px-4 py-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           <div className="flex items-center gap-2 text-xs text-primary-foreground/55">
             <ShieldCheck className="h-3.5 w-3.5 text-accent" />
             <span>Gas Safe Registered · No. {SITE.gasSafe}</span>
@@ -38,8 +38,8 @@ export function SiteFooter() {
             className="h-12 w-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
           />
           <p className="mt-4 text-sm leading-relaxed text-primary-foreground/65">
-            Hull's local Gas Safe plumbing and heating specialists. Domestic &amp; commercial,
-            24/7 emergency cover across {SITE.area}.
+            Hull's local Gas Safe plumbing and heating specialists. Domestic &amp; commercial, 24/7
+            emergency cover across {SITE.area}.
           </p>
           <div className="mt-5 flex items-center gap-3">
             {[
@@ -54,7 +54,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="rounded-full bg-primary-foreground/10 p-2 text-primary-foreground/70 transition-colors hover:bg-accent hover:text-accent-foreground"
+                className="rounded-md bg-primary-foreground/10 p-2 text-primary-foreground/70 transition-colors hover:bg-accent hover:text-accent-foreground"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -63,9 +63,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-widest text-primary-foreground/40">
-            Services
-          </h4>
+          <h4 className="text-sm font-bold text-primary-foreground/55">Services</h4>
           <ul className="mt-4 space-y-2.5 text-sm">
             {SERVICES.slice(0, 6).map((s) => (
               <li key={s.slug}>
@@ -82,9 +80,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-widest text-primary-foreground/40">
-            Company
-          </h4>
+          <h4 className="text-sm font-bold text-primary-foreground/55">Company</h4>
           <ul className="mt-4 space-y-2.5 text-sm">
             {[
               { to: "/about", label: "About us" },
@@ -108,9 +104,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="text-xs font-bold uppercase tracking-widest text-primary-foreground/40">
-            Get in touch
-          </h4>
+          <h4 className="text-sm font-bold text-primary-foreground/55">Get in touch</h4>
           <ul className="mt-4 space-y-3.5 text-sm">
             <li>
               <a
@@ -137,7 +131,7 @@ export function SiteFooter() {
           </ul>
           <Link
             to="/contact"
-            className="mt-6 inline-flex rounded-md bg-accent px-5 py-2.5 text-sm font-bold text-accent-foreground transition-all hover:scale-[1.02] hover:bg-accent/90"
+            className="mt-6 inline-flex rounded-md bg-accent px-5 py-2.5 text-sm font-bold text-accent-foreground transition-colors hover:bg-accent/90"
           >
             Book a job
           </Link>

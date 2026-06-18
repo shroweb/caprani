@@ -6,7 +6,10 @@ export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { title: "Terms & Conditions — Caprani Plumbing & Heating" },
-      { name: "description", content: "Terms and conditions for Caprani Plumbing and Heating Limited, Hull." },
+      {
+        name: "description",
+        content: "Terms and conditions for Caprani Plumbing and Heating Limited, Hull.",
+      },
     ],
   }),
 });
@@ -57,12 +60,9 @@ const sections = [
 function Terms() {
   return (
     <>
-      <section className="bg-primary text-primary-foreground">
+      <section className="page-hero">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <div className="text-sm font-semibold uppercase tracking-wider text-accent">Legal</div>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Terms & Conditions
-          </h1>
+          <h1 className="text-4xl font-black sm:text-5xl">Terms & Conditions</h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/80">
             {SITE.legalName} · {SITE.address}
           </p>
@@ -74,18 +74,27 @@ function Terms() {
           {sections.map((s, i) => (
             <div key={s.title}>
               <h2 className="text-lg font-bold text-foreground">
-                <span className="mr-2 text-accent">{i + 1}.</span>{s.title}
+                <span className="mr-2 text-accent">{i + 1}.</span>
+                {s.title}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 rounded-xl border border-border bg-secondary/40 p-5 text-sm text-muted-foreground">
+        <div className="mt-12 rounded-md border border-border bg-secondary/40 p-5 text-sm text-muted-foreground">
           Questions about these terms? Call us on{" "}
-          <a href={SITE.phoneHref} className="font-semibold text-foreground hover:text-accent">{SITE.phone}</a>{" "}
+          <a href={SITE.phoneHref} className="font-semibold text-foreground hover:text-accent">
+            {SITE.phone}
+          </a>{" "}
           or email{" "}
-          <a href={`mailto:${SITE.email}`} className="font-semibold text-foreground hover:text-accent">{SITE.email}</a>.
+          <a
+            href={`mailto:${SITE.email}`}
+            className="font-semibold text-foreground hover:text-accent"
+          >
+            {SITE.email}
+          </a>
+          .
         </div>
       </section>
     </>

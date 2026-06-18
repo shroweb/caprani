@@ -9,19 +9,22 @@ const vacancies = [
     title: "Gas Safe Heating Engineer",
     location: "Hull",
     type: "Full-time",
-    description: "Experienced Gas Safe engineer to join our domestic install & service team. Company van and tools provided.",
+    description:
+      "Experienced Gas Safe engineer to join our domestic install & service team. Company van and tools provided.",
   },
   {
     title: "Plumbing Apprentice",
     location: "Hull",
     type: "Apprenticeship",
-    description: "Earn while you learn — work alongside experienced engineers and study towards your NVQ.",
+    description:
+      "Earn while you learn — work alongside experienced engineers and study towards your NVQ.",
   },
   {
     title: "Bathroom Installer",
     location: "Hull / East Yorkshire",
     type: "Full-time",
-    description: "Skilled bathroom fitter with experience in tiling, plumbing first/second fix and complete refurbishments.",
+    description:
+      "Skilled bathroom fitter with experience in tiling, plumbing first/second fix and complete refurbishments.",
   },
 ];
 
@@ -38,7 +41,11 @@ export const Route = createFileRoute("/jobs")({
   head: () => ({
     meta: [
       { title: "Careers — Join Caprani Plumbing & Heating Hull" },
-      { name: "description", content: "Current vacancies at Caprani Plumbing & Heating in Hull. We're hiring Gas Safe engineers, bathroom installers and plumbing apprentices." },
+      {
+        name: "description",
+        content:
+          "Current vacancies at Caprani Plumbing & Heating in Hull. We're hiring Gas Safe engineers, bathroom installers and plumbing apprentices.",
+      },
     ],
   }),
 });
@@ -53,7 +60,9 @@ function Jobs() {
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
       const errs: Record<string, string> = {};
-      parsed.error.issues.forEach((i) => { errs[i.path[0] as string] = i.message; });
+      parsed.error.issues.forEach((i) => {
+        errs[i.path[0] as string] = i.message;
+      });
       setErrors(errs);
       return;
     }
@@ -63,10 +72,9 @@ function Jobs() {
 
   return (
     <>
-      <section className="bg-primary text-primary-foreground">
+      <section className="page-hero">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <div className="text-sm font-semibold uppercase tracking-wider text-accent">Careers</div>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Join the Caprani team</h1>
+          <h1 className="text-4xl font-black sm:text-5xl">Join the Caprani team</h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/80">
             We're growing — and we're always keen to hear from talented engineers and apprentices
             who take pride in their work.
@@ -79,15 +87,22 @@ function Jobs() {
         <div className="mt-6 grid gap-5 lg:grid-cols-3">
           {vacancies.map((v, i) => (
             <Reveal key={v.title} delay={i * 70}>
-              <div className="flex h-full flex-col rounded-xl border border-border bg-card p-6 shadow-sm">
+              <div className="service-card flex h-full flex-col rounded-md p-6">
                 <Briefcase className="h-5 w-5 text-accent" />
                 <h3 className="mt-3 text-lg font-semibold">{v.title}</h3>
                 <div className="mt-2 flex flex-wrap gap-3 text-xs text-muted-foreground">
-                  <span className="inline-flex items-center gap-1"><MapPin className="h-3 w-3" /> {v.location}</span>
-                  <span className="inline-flex items-center gap-1"><Clock className="h-3 w-3" /> {v.type}</span>
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin className="h-3 w-3" /> {v.location}
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <Clock className="h-3 w-3" /> {v.type}
+                  </span>
                 </div>
                 <p className="mt-3 flex-1 text-sm text-muted-foreground">{v.description}</p>
-                <a href="#apply" className="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90">
+                <a
+                  href="#apply"
+                  className="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                >
                   Apply now
                 </a>
               </div>
@@ -96,21 +111,23 @@ function Jobs() {
         </div>
       </section>
 
-      <section id="apply" className="bg-secondary/40 py-16">
+      <section id="apply" className="bg-secondary/45 py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-2xl font-bold">Apply</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Send us your details and attach your CV — we'll be in touch shortly.
             </p>
-            <form onSubmit={onSubmit} className="mt-6 rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <form onSubmit={onSubmit} className="premium-panel mt-6 rounded-md p-6 sm:p-8">
               {sent ? (
                 <div className="text-center">
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent text-accent-foreground">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-md bg-accent text-accent-foreground">
                     <Check className="h-6 w-6" />
                   </div>
                   <h3 className="mt-4 text-xl font-bold">Application received</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Thanks for your interest — we'll be in touch soon.</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Thanks for your interest — we'll be in touch soon.
+                  </p>
                 </div>
               ) : (
                 <>
@@ -119,30 +136,59 @@ function Jobs() {
                     <JField name="email" label="Email" type="email" required error={errors.email} />
                     <JField name="phone" label="Phone" type="tel" required error={errors.phone} />
                     <div>
-                      <label className="text-sm font-medium" htmlFor="role">Role</label>
-                      <select id="role" name="role" defaultValue="" className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30">
-                        <option value="" disabled>Choose a role…</option>
-                        {vacancies.map(v => <option key={v.title} value={v.title}>{v.title}</option>)}
+                      <label className="text-sm font-medium" htmlFor="role">
+                        Role
+                      </label>
+                      <select
+                        id="role"
+                        name="role"
+                        defaultValue=""
+                        className="field-control mt-1.5 w-full"
+                      >
+                        <option value="" disabled>
+                          Choose a role
+                        </option>
+                        {vacancies.map((v) => (
+                          <option key={v.title} value={v.title}>
+                            {v.title}
+                          </option>
+                        ))}
                         <option value="Speculative">Speculative application</option>
                       </select>
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="text-sm font-medium" htmlFor="message">A bit about you</label>
-                      <textarea id="message" name="message" rows={4} maxLength={2000} className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" placeholder="Tell us about your experience and qualifications…" />
+                      <label className="text-sm font-medium" htmlFor="message">
+                        A bit about you
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={4}
+                        maxLength={2000}
+                        className="field-control mt-1.5 w-full py-2.5"
+                        placeholder="Tell us about your experience and qualifications"
+                      />
                     </div>
                     <div className="sm:col-span-2">
-                      <label className="text-sm font-medium" htmlFor="cv">CV / Resume</label>
+                      <label className="text-sm font-medium" htmlFor="cv">
+                        CV / Resume
+                      </label>
                       <input
                         id="cv"
                         name="cv"
                         type="file"
                         accept=".pdf,.doc,.docx"
-                        className="mt-1.5 w-full cursor-pointer rounded-md border border-input bg-background px-3 py-2 text-sm text-muted-foreground file:mr-3 file:rounded file:border-0 file:bg-accent file:px-3 file:py-1 file:text-xs file:font-semibold file:text-accent-foreground hover:file:bg-accent/90"
+                        className="field-control mt-1.5 w-full cursor-pointer py-2 text-muted-foreground file:mr-3 file:rounded file:border-0 file:bg-accent file:px-3 file:py-1 file:text-xs file:font-semibold file:text-accent-foreground hover:file:bg-accent/90"
                       />
-                      <p className="mt-1 text-xs text-muted-foreground">PDF, DOC or DOCX — max 5 MB</p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        PDF, DOC or DOCX — max 5 MB
+                      </p>
                     </div>
                   </div>
-                  <button type="submit" className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3.5 text-base font-semibold text-accent-foreground hover:bg-accent/90 sm:w-auto">
+                  <button
+                    type="submit"
+                    className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3.5 text-base font-semibold text-accent-foreground transition-colors hover:bg-accent/90 sm:w-auto"
+                  >
                     Submit application
                   </button>
                 </>
@@ -155,14 +201,32 @@ function Jobs() {
   );
 }
 
-function JField({ name, label, type = "text", required, error }: { name: string; label: string; type?: string; required?: boolean; error?: string }) {
+function JField({
+  name,
+  label,
+  type = "text",
+  required,
+  error,
+}: {
+  name: string;
+  label: string;
+  type?: string;
+  required?: boolean;
+  error?: string;
+}) {
   return (
     <div>
       <label htmlFor={name} className="text-sm font-medium">
-        {label}{required && <span className="ml-0.5 text-accent">*</span>}
+        {label}
+        {required && <span className="ml-0.5 text-accent">*</span>}
       </label>
-      <input id={name} name={name} type={type} required={required}
-        className="mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" />
+      <input
+        id={name}
+        name={name}
+        type={type}
+        required={required}
+        className="field-control mt-1.5 w-full"
+      />
       {error && <p className="mt-1 text-xs text-destructive">{error}</p>}
     </div>
   );

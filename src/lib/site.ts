@@ -62,7 +62,8 @@ export const SERVICES = [
   {
     slug: "boiler-installations",
     title: "Boiler Installations",
-    short: "Full-system replacements and new installs, handled start-to-finish by Gas Safe engineers.",
+    short:
+      "Full-system replacements and new installs, handled start-to-finish by Gas Safe engineers.",
     image: boilerInstall,
     included: [
       "Free home survey and written quote",
@@ -84,12 +85,17 @@ export const SERVICES = [
       "Same-day repairs where possible",
       "Quality replacement parts",
     ],
-    benefits: ["No call-out fee on completed work", "12-month workmanship guarantee", "Local engineers"],
+    benefits: [
+      "No call-out fee on completed work",
+      "12-month workmanship guarantee",
+      "Local engineers",
+    ],
   },
   {
     slug: "bathroom-suites",
     title: "Bathroom Suites",
-    short: "Downstairs loos to roll-top baths — we'll work with any budget, even if you can't splash out.",
+    short:
+      "Downstairs loos to roll-top baths — we'll work with any budget, even if you can't splash out.",
     image: bathroomSuite,
     included: [
       "Design consultation",
@@ -102,7 +108,8 @@ export const SERVICES = [
   {
     slug: "boiler-servicing",
     title: "Boiler Servicing",
-    short: "Annual servicing keeps your boiler safe, efficient, and your manufacturer warranty valid.",
+    short:
+      "Annual servicing keeps your boiler safe, efficient, and your manufacturer warranty valid.",
     image: engineerBoiler,
     included: [
       "Full safety inspection",
@@ -115,7 +122,8 @@ export const SERVICES = [
   {
     slug: "oil",
     title: "Oil Boilers",
-    short: "OFTEC-registered oil boiler installation, servicing and maintenance for homes and businesses.",
+    short:
+      "OFTEC-registered oil boiler installation, servicing and maintenance for homes and businesses.",
     image: vanChimney,
     included: [
       "OFTEC-registered work (C105741)",
@@ -162,15 +170,56 @@ export const SERVICES = [
 ] as const;
 
 export const TEAM = [
-  { name: "Nathan Caprani", role: "Company Director & Lead Engineer", since: "2007", bio: "In the trade since 2007, Nathan combines technical expertise with hands-on involvement in every project. He mentors the team and drives the company forward through quality and continuous improvement.", img: `${IMG}/Nathan.jpg/:/cr=t:6.3%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "Jessica Caprani", role: "Office Manager", bio: "Manages administrative and logistical operations with precision, overseeing company structure and ensuring smooth daily workflows.", img: `${IMG}/Jessica.jpg/:/cr=t:17.85%25,l:0%25,w:100%25,h:71.1%25/rs=w:600,h:600,cg:true` },
-  { name: "Matthew Owen", role: "Operations Manager", bio: "Seven+ years of industry experience. Oversees day-to-day operations, maintains quality standards and fosters teamwork and customer satisfaction.", img: `${IMG}/Matthew.jpg/:/cr=t:8.26%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "Paul Jewitt", role: "Plumbing & Heating Engineer", bio: "Senior engineer specialising in servicing and maintenance, with meticulous attention to detail and strong problem-solving skills.", img: `${IMG}/Paul.jpg/:/cr=t:8.26%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "George Benn", role: "Plumbing & Heating Apprentice", since: "2021", bio: "Working toward NVQ Level 3, one year from Gas Qualification. Shows real initiative and a collaborative spirit on every job.", img: `${IMG}/George.jpg/:/cr=t:5.98%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "Tyler Hill", role: "Plumbing & Heating Apprentice", bio: "First-year apprentice with a strong work ethic and natural drive — keen to learn and quick to take on responsibility.", img: `${IMG}/Tyler%20Hill.jpg/:/cr=t:6.96%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true` },
-  { name: "Justina Plaxton", role: "Admin Assistant", bio: "Newest team member bringing organisation, attention to detail and a solutions-focused approach to keeping the office running.", img: `${IMG}/Justina%20Plaxton.jpg/:/cr=t:13.76%25,l:0%25,w:100%25,h:62.2%25/rs=w:600,h:600,cg:true` },
-  { name: "Mullak Yeldar", role: "Quality & Compliance Coordinator", bio: "Conducts van audits, equipment checks and quality inspections to ensure every job meets our standards.", img: `${IMG}/Kallum.png/:/cr=t:16.27%25,l:0%25,w:100%25,h:67.45%25/rs=w:600,h:600,cg:true` },
-  { name: "Otto", role: "The Office Dog", bio: "Provides customer hospitality and essential office morale. No further qualifications required.", img: `${IMG}/blob-03a281b.png/:/cr=t:26.79%25,l:12.83%25,w:80.65%25,h:60.44%25/rs=w:600,h:600,cg:true,m` },
+  {
+    name: "Nathan Caprani",
+    role: "Company Director & Lead Engineer",
+    since: "2007",
+    bio: "In the trade since 2007, Nathan combines technical expertise with hands-on involvement in every project. He mentors the team and drives the company forward through quality and continuous improvement.",
+    img: `${IMG}/Nathan.jpg/:/cr=t:6.3%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true`,
+  },
+  {
+    name: "Jessica Caprani",
+    role: "Office Manager",
+    bio: "Manages administrative and logistical operations with precision, overseeing company structure and ensuring smooth daily workflows.",
+    img: `${IMG}/Jessica.jpg/:/cr=t:17.85%25,l:0%25,w:100%25,h:71.1%25/rs=w:600,h:600,cg:true`,
+  },
+  {
+    name: "Matthew Owen",
+    role: "Operations Manager",
+    bio: "Seven+ years of industry experience. Oversees day-to-day operations, maintains quality standards and fosters teamwork and customer satisfaction.",
+    img: `${IMG}/Matthew.jpg/:/cr=t:8.26%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true`,
+  },
+  {
+    name: "Paul Jewitt",
+    role: "Plumbing & Heating Engineer",
+    bio: "Senior engineer specialising in servicing and maintenance, with meticulous attention to detail and strong problem-solving skills.",
+    img: `${IMG}/Paul.jpg/:/cr=t:8.26%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true`,
+  },
+  {
+    name: "George Benn",
+    role: "Plumbing & Heating Apprentice",
+    since: "2021",
+    bio: "Working toward NVQ Level 3, one year from Gas Qualification. Shows real initiative and a collaborative spirit on every job.",
+    img: `${IMG}/George.jpg/:/cr=t:5.98%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true`,
+  },
+  {
+    name: "Tyler Hill",
+    role: "Plumbing & Heating Apprentice",
+    bio: "First-year apprentice with a strong work ethic and natural drive — keen to learn and quick to take on responsibility.",
+    img: `${IMG}/Tyler%20Hill.jpg/:/cr=t:6.96%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:600,cg:true`,
+  },
+  {
+    name: "Justina Plaxton",
+    role: "Admin Assistant",
+    bio: "Newest team member bringing organisation, attention to detail and a solutions-focused approach to keeping the office running.",
+    img: `${IMG}/Justina%20Plaxton.jpg/:/cr=t:13.76%25,l:0%25,w:100%25,h:62.2%25/rs=w:600,h:600,cg:true`,
+  },
+  {
+    name: "Mullak Yeldar",
+    role: "Quality & Compliance Coordinator",
+    bio: "Conducts van audits, equipment checks and quality inspections to ensure every job meets our standards.",
+    img: `${IMG}/Kallum.png/:/cr=t:16.27%25,l:0%25,w:100%25,h:67.45%25/rs=w:600,h:600,cg:true`,
+  },
 ];
 
 export const DIRECTOR_QUOTE = {
@@ -204,21 +253,54 @@ export const SERVICE_DETAILS: Record<
       "On the day, we sheet up walkways, drain the old system, fit the new boiler with a magnetic system filter and chemical flush, then commission to the manufacturer's spec. You get the warranty paperwork, the Benchmark logbook, and a quick walkthrough on the controls before we leave.",
     ],
     process: [
-      { title: "Free home survey", description: "We come out, measure up, and talk you through the options — no obligation, no hard sell." },
-      { title: "Written fixed quote", description: "Itemised, valid for 14 days, with finance options if you'd rather spread the cost." },
-      { title: "Install day", description: "Typically one to two days. Floors covered, old kit removed, new system flushed and commissioned." },
-      { title: "Aftercare", description: "Warranty registered with the manufacturer, plus our own 12-month workmanship guarantee." },
+      {
+        title: "Free home survey",
+        description:
+          "We come out, measure up, and talk you through the options — no obligation, no hard sell.",
+      },
+      {
+        title: "Written fixed quote",
+        description:
+          "Itemised, valid for 14 days, with finance options if you'd rather spread the cost.",
+      },
+      {
+        title: "Install day",
+        description:
+          "Typically one to two days. Floors covered, old kit removed, new system flushed and commissioned.",
+      },
+      {
+        title: "Aftercare",
+        description:
+          "Warranty registered with the manufacturer, plus our own 12-month workmanship guarantee.",
+      },
     ],
     brands: ["Worcester Bosch", "Vaillant", "Ideal", "Baxi", "Viessmann"],
     pricing: [
-      { label: "Combi swap (like-for-like)", price: "from £1,895", note: "Standard install, existing pipework" },
-      { label: "System or regular boiler", price: "from £2,395", note: "Including new filter and flush" },
+      {
+        label: "Combi swap (like-for-like)",
+        price: "from £1,895",
+        note: "Standard install, existing pipework",
+      },
+      {
+        label: "System or regular boiler",
+        price: "from £2,395",
+        note: "Including new filter and flush",
+      },
       { label: "Full system upgrade", price: "POA", note: "Includes pipework, cylinder, controls" },
     ],
     faqs: [
-      { q: "How long does an install take?", a: "Most combi swaps are done in a day. A full system change with a new cylinder or relocation is usually two days." },
-      { q: "Do you offer finance?", a: "Yes — interest-free and longer-term options available through our approved lender. We'll send the details with your quote." },
-      { q: "What warranty do I get?", a: "Up to 12 years from the manufacturer on approved boilers, plus our own 12-month workmanship guarantee on the install." },
+      {
+        q: "How long does an install take?",
+        a: "Most combi swaps are done in a day. A full system change with a new cylinder or relocation is usually two days.",
+      },
+      {
+        q: "Do you offer finance?",
+        a: "Yes — interest-free and longer-term options available through our approved lender. We'll send the details with your quote.",
+      },
+      {
+        q: "What warranty do I get?",
+        a: "Up to 12 years from the manufacturer on approved boilers, plus our own 12-month workmanship guarantee on the install.",
+      },
     ],
     related: ["boiler-servicing", "maintenance-repairs", "underfloor-heating"],
   },
@@ -230,20 +312,56 @@ export const SERVICE_DETAILS: Record<
       "Common call-outs: no hot water, pressure drops, noisy boilers, leaking joints, blocked drains, dead radiators, faulty diverter valves, broken thermostats. If it's plumbing or heating, we'll have seen it before.",
     ],
     process: [
-      { title: "Phone triage", description: "Quick chat to work out whether it's an emergency or can wait until tomorrow morning." },
-      { title: "Diagnostic visit", description: "Fixed call-out fee. We find the fault and quote the fix before touching anything." },
-      { title: "Same-day fix where possible", description: "We carry common parts on the van — about 70% of jobs are sorted on the first visit." },
-      { title: "12-month guarantee", description: "On every repair we carry out. If it goes again, we come back free." },
+      {
+        title: "Phone triage",
+        description:
+          "Quick chat to work out whether it's an emergency or can wait until tomorrow morning.",
+      },
+      {
+        title: "Diagnostic visit",
+        description:
+          "Fixed call-out fee. We find the fault and quote the fix before touching anything.",
+      },
+      {
+        title: "Same-day fix where possible",
+        description:
+          "We carry common parts on the van — about 70% of jobs are sorted on the first visit.",
+      },
+      {
+        title: "12-month guarantee",
+        description: "On every repair we carry out. If it goes again, we come back free.",
+      },
     ],
     pricing: [
-      { label: "Diagnostic call-out", price: "£75", note: "Waived if you go ahead with the repair" },
-      { label: "Standard repair (1 hr)", price: "from £95", note: "Parts on top, quoted before we start" },
-      { label: "Emergency out-of-hours", price: "from £150", note: "Evenings, weekends, bank holidays" },
+      {
+        label: "Diagnostic call-out",
+        price: "£75",
+        note: "Waived if you go ahead with the repair",
+      },
+      {
+        label: "Standard repair (1 hr)",
+        price: "from £95",
+        note: "Parts on top, quoted before we start",
+      },
+      {
+        label: "Emergency out-of-hours",
+        price: "from £150",
+        note: "Evenings, weekends, bank holidays",
+      },
     ],
     faqs: [
-      { q: "How fast can you get to me?", a: "For genuine emergencies (no heat in winter, major leaks) we aim for same-day. Routine repairs are usually within 48 hours." },
-      { q: "Do you charge to come and look?", a: "There's a fixed diagnostic fee, but it's waived if you go ahead with the repair on the day." },
-      { q: "Are quotes free?", a: "Yes — we'll always tell you the cost before any work begins. No surprises on the invoice." },
+      {
+        q: "How fast can you get to me?",
+        a: "For genuine emergencies (no heat in winter, major leaks) we aim for same-day. Routine repairs are usually within 48 hours.",
+      },
+      {
+        q: "Do you charge to come and look?",
+        a: "There's a fixed diagnostic fee, but it's waived if you go ahead with the repair on the day.",
+      },
+      {
+        q: "Are quotes free?",
+        a: "Yes — we'll always tell you the cost before any work begins. No surprises on the invoice.",
+      },
     ],
     related: ["boiler-servicing", "boiler-installations", "commercial-services"],
   },
@@ -255,20 +373,52 @@ export const SERVICE_DETAILS: Record<
       "Bring us a Pinterest board, a rough sketch, or just a rough budget. We'll spec the suite, source the tiles, and give you a fixed price and a realistic timeline before you commit.",
     ],
     process: [
-      { title: "Design consultation", description: "On-site, free. We measure up, talk through layout options, and agree a style direction." },
-      { title: "Fixed quote", description: "Itemised — labour, suite, tiles, sundries, waste removal. No surprise extras." },
-      { title: "Strip-out & first fix", description: "Old suite out, new pipework, electrics and waste run to the new layout." },
-      { title: "Second fix & finish", description: "Tiling, suite install, sealing, snagging, and a proper clean before handover." },
+      {
+        title: "Design consultation",
+        description:
+          "On-site, free. We measure up, talk through layout options, and agree a style direction.",
+      },
+      {
+        title: "Fixed quote",
+        description:
+          "Itemised — labour, suite, tiles, sundries, waste removal. No surprise extras.",
+      },
+      {
+        title: "Strip-out & first fix",
+        description: "Old suite out, new pipework, electrics and waste run to the new layout.",
+      },
+      {
+        title: "Second fix & finish",
+        description:
+          "Tiling, suite install, sealing, snagging, and a proper clean before handover.",
+      },
     ],
     pricing: [
       { label: "Cloakroom refresh", price: "from £2,500", note: "WC, basin, retile, redecorate" },
-      { label: "Family bathroom", price: "from £6,500", note: "Full strip-out, suite, tiling, electrics" },
-      { label: "Premium ensuite", price: "from £9,500", note: "Walk-in shower, designer fittings, underfloor heat" },
+      {
+        label: "Family bathroom",
+        price: "from £6,500",
+        note: "Full strip-out, suite, tiling, electrics",
+      },
+      {
+        label: "Premium ensuite",
+        price: "from £9,500",
+        note: "Walk-in shower, designer fittings, underfloor heat",
+      },
     ],
     faqs: [
-      { q: "How long does a full bathroom take?", a: "Most family bathrooms are 7–10 working days from strip-out to walking on the new floor." },
-      { q: "Can I supply my own suite?", a: "Yes, though we usually get trade pricing that beats the retail price you'd pay. We'll quote both ways." },
-      { q: "Do you handle the electrics?", a: "Yes — Part P qualified for shower circuits, extractor fans, downlights and shaver sockets." },
+      {
+        q: "How long does a full bathroom take?",
+        a: "Most family bathrooms are 7–10 working days from strip-out to walking on the new floor.",
+      },
+      {
+        q: "Can I supply my own suite?",
+        a: "Yes, though we usually get trade pricing that beats the retail price you'd pay. We'll quote both ways.",
+      },
+      {
+        q: "Do you handle the electrics?",
+        a: "Yes — Part P qualified for shower circuits, extractor fans, downlights and shaver sockets.",
+      },
     ],
     related: ["underfloor-heating", "designer-radiators", "maintenance-repairs"],
   },
@@ -280,24 +430,55 @@ export const SERVICE_DETAILS: Record<
       "Every service includes a full Gas Safe inspection, flue and combustion analysis, and a written report. If your boiler is still in its manufacturer warranty, this is what keeps it valid.",
     ],
     process: [
-      { title: "Visual inspection", description: "Boiler casing, flue, condensate, gas tightness check — the safety basics." },
-      { title: "Combustion analysis", description: "Calibrated flue gas analyser. We check CO, CO₂ and ratio against the manufacturer's spec." },
-      { title: "Strip and clean", description: "Burner, heat exchanger and condensate trap cleaned where required." },
-      { title: "Report & certificate", description: "Written service report and Gas Safe sticker — proof for your warranty and insurance." },
+      {
+        title: "Visual inspection",
+        description: "Boiler casing, flue, condensate, gas tightness check — the safety basics.",
+      },
+      {
+        title: "Combustion analysis",
+        description:
+          "Calibrated flue gas analyser. We check CO, CO₂ and ratio against the manufacturer's spec.",
+      },
+      {
+        title: "Strip and clean",
+        description: "Burner, heat exchanger and condensate trap cleaned where required.",
+      },
+      {
+        title: "Report & certificate",
+        description:
+          "Written service report and Gas Safe sticker — proof for your warranty and insurance.",
+      },
     ],
     pricing: [
-      { label: "Annual gas boiler service", price: "£85", note: "Domestic combi, system or regular" },
-      { label: "Oil boiler service", price: "£135", note: "OFTEC registered, includes nozzle change" },
+      {
+        label: "Annual gas boiler service",
+        price: "£85",
+        note: "Domestic combi, system or regular",
+      },
+      {
+        label: "Oil boiler service",
+        price: "£135",
+        note: "OFTEC registered, includes nozzle change",
+      },
       { label: "Landlord gas safety + service", price: "£120", note: "CP12 certificate included" },
     ],
     faqs: [
-      { q: "How often should I service my boiler?", a: "Every 12 months. Most manufacturer warranties require it — miss a year and you can void cover." },
-      { q: "How long does it take?", a: "Around 45 minutes to an hour for a standard combi. We'll book a 2-hour window so we're not rushing." },
-      { q: "Do you do landlord certificates?", a: "Yes — CP12 gas safety certificate issued on the day, valid for 12 months." },
+      {
+        q: "How often should I service my boiler?",
+        a: "Every 12 months. Most manufacturer warranties require it — miss a year and you can void cover.",
+      },
+      {
+        q: "How long does it take?",
+        a: "Around 45 minutes to an hour for a standard combi. We'll book a 2-hour window so we're not rushing.",
+      },
+      {
+        q: "Do you do landlord certificates?",
+        a: "Yes — CP12 gas safety certificate issued on the day, valid for 12 months.",
+      },
     ],
     related: ["maintenance-repairs", "boiler-installations", "oil"],
   },
-  "oil": {
+  oil: {
     intro:
       "OFTEC-registered oil specialists for the rural villages around Hull where mains gas doesn't reach. Installs, swaps, servicing and repairs.",
     body: [
@@ -305,21 +486,48 @@ export const SERVICE_DETAILS: Record<
       "Worcester Bosch Greenstar, Grant Vortex, Warmflow, Firebird — we install, service and repair them all. If you're on oil and you're tired of being told 'sorry, we don't really do that', give us a ring.",
     ],
     process: [
-      { title: "Survey & tank check", description: "Boiler, tank, fuel line and bund condition — all checked before quoting any work." },
-      { title: "Installation or swap", description: "Old unit removed, new boiler fitted, system flushed, commissioned and combustion-tested." },
-      { title: "Annual servicing", description: "Nozzle change, electrode reset, combustion analysis, full safety inspection." },
-      { title: "Breakdown repairs", description: "We carry pumps, nozzles, photocells and control boxes for the common units." },
+      {
+        title: "Survey & tank check",
+        description:
+          "Boiler, tank, fuel line and bund condition — all checked before quoting any work.",
+      },
+      {
+        title: "Installation or swap",
+        description:
+          "Old unit removed, new boiler fitted, system flushed, commissioned and combustion-tested.",
+      },
+      {
+        title: "Annual servicing",
+        description: "Nozzle change, electrode reset, combustion analysis, full safety inspection.",
+      },
+      {
+        title: "Breakdown repairs",
+        description: "We carry pumps, nozzles, photocells and control boxes for the common units.",
+      },
     ],
     brands: ["Worcester Greenstar", "Grant Vortex", "Warmflow", "Firebird", "Mistral"],
     pricing: [
       { label: "Annual oil service", price: "£135", note: "Includes nozzle and combustion test" },
-      { label: "Oil boiler swap", price: "from £2,895", note: "Like-for-like, external or internal" },
+      {
+        label: "Oil boiler swap",
+        price: "from £2,895",
+        note: "Like-for-like, external or internal",
+      },
       { label: "Tank inspection", price: "£75", note: "Bund, sight gauge, fire valve, fuel line" },
     ],
     faqs: [
-      { q: "My boiler keeps locking out — what is it?", a: "Usually a blocked nozzle, dirty photocell, or contaminated fuel. A service almost always sorts it." },
-      { q: "Can you replace my oil tank?", a: "Yes — single or bunded, plastic or steel, with all the OFTEC paperwork on completion." },
-      { q: "Do you cover rural East Yorkshire?", a: "Yes — we regularly cover Beverley, Driffield, Hornsea, Withernsea and the surrounding villages." },
+      {
+        q: "My boiler keeps locking out — what is it?",
+        a: "Usually a blocked nozzle, dirty photocell, or contaminated fuel. A service almost always sorts it.",
+      },
+      {
+        q: "Can you replace my oil tank?",
+        a: "Yes — single or bunded, plastic or steel, with all the OFTEC paperwork on completion.",
+      },
+      {
+        q: "Do you cover rural East Yorkshire?",
+        a: "Yes — we regularly cover Beverley, Driffield, Hornsea, Withernsea and the surrounding villages.",
+      },
     ],
     related: ["boiler-servicing", "boiler-installations", "commercial-services"],
   },
@@ -331,10 +539,22 @@ export const SERVICE_DETAILS: Record<
       "Pairs brilliantly with a modern condensing boiler or an air source heat pump, since UFH runs at lower flow temperatures and squeezes more efficiency out of both.",
     ],
     process: [
-      { title: "Design", description: "Heat loss calc per room, loop layout, manifold sizing and control zoning." },
-      { title: "First fix", description: "Pipe loops laid and pressure tested before screed or floor goes down." },
-      { title: "Manifold & controls", description: "Wired into your boiler or heat pump, with smart room thermostats per zone." },
-      { title: "Commission & balance", description: "Each loop balanced to flow rate, system bled and signed off." },
+      {
+        title: "Design",
+        description: "Heat loss calc per room, loop layout, manifold sizing and control zoning.",
+      },
+      {
+        title: "First fix",
+        description: "Pipe loops laid and pressure tested before screed or floor goes down.",
+      },
+      {
+        title: "Manifold & controls",
+        description: "Wired into your boiler or heat pump, with smart room thermostats per zone.",
+      },
+      {
+        title: "Commission & balance",
+        description: "Each loop balanced to flow rate, system bled and signed off.",
+      },
     ],
     pricing: [
       { label: "Single room retrofit", price: "from £1,800", note: "Low-profile, no screed" },
@@ -342,9 +562,18 @@ export const SERVICE_DETAILS: Record<
       { label: "Whole-house new build", price: "POA", note: "Full design and install" },
     ],
     faqs: [
-      { q: "Will it work with my existing boiler?", a: "Usually yes — most modern combi and system boilers run UFH happily. We'll check on the survey." },
-      { q: "Can I have it under wood floors?", a: "Yes, with engineered boards rated for UFH. We'd avoid solid hardwood — it can move and gap." },
-      { q: "How long until the floor warms up?", a: "Wet UFH takes a few hours from cold — it's designed to run steady, not blast on and off like a radiator." },
+      {
+        q: "Will it work with my existing boiler?",
+        a: "Usually yes — most modern combi and system boilers run UFH happily. We'll check on the survey.",
+      },
+      {
+        q: "Can I have it under wood floors?",
+        a: "Yes, with engineered boards rated for UFH. We'd avoid solid hardwood — it can move and gap.",
+      },
+      {
+        q: "How long until the floor warms up?",
+        a: "Wet UFH takes a few hours from cold — it's designed to run steady, not blast on and off like a radiator.",
+      },
     ],
     related: ["boiler-installations", "designer-radiators", "bathroom-suites"],
   },
@@ -356,21 +585,47 @@ export const SERVICE_DETAILS: Record<
       "Most of the failures we see with statement rads aren't the rad itself, they're undersized output or a system that was never balanced. We sort both as standard.",
     ],
     process: [
-      { title: "Heat loss check", description: "We work out the actual BTU you need before recommending models." },
-      { title: "Specification", description: "Style, finish, valve type, pipe centres — agreed before anything is ordered." },
-      { title: "Install", description: "Pipework adjusted, rad hung, valves fitted, system topped up and re-pressurised." },
-      { title: "Balance & bleed", description: "Whole system rebalanced so every rad in the house heats evenly." },
+      {
+        title: "Heat loss check",
+        description: "We work out the actual BTU you need before recommending models.",
+      },
+      {
+        title: "Specification",
+        description: "Style, finish, valve type, pipe centres — agreed before anything is ordered.",
+      },
+      {
+        title: "Install",
+        description:
+          "Pipework adjusted, rad hung, valves fitted, system topped up and re-pressurised.",
+      },
+      {
+        title: "Balance & bleed",
+        description: "Whole system rebalanced so every rad in the house heats evenly.",
+      },
     ],
     brands: ["Bisque", "Stelrad", "Reina", "DQ Heating", "The Radiator Company"],
     pricing: [
       { label: "Single rad swap", price: "from £180", note: "Like-for-like, you supply the rad" },
-      { label: "Vertical designer rad", price: "from £450", note: "Including rad, valves and install" },
+      {
+        label: "Vertical designer rad",
+        price: "from £450",
+        note: "Including rad, valves and install",
+      },
       { label: "Cast iron column rad", price: "POA", note: "Heavy units, often need pipe rework" },
     ],
     faqs: [
-      { q: "Will a designer rad heat the room as well as my old one?", a: "Only if it's sized right. We always calculate BTU first so the new one matches or beats the old output." },
-      { q: "Can you move a radiator to a different wall?", a: "Yes — we run new pipework in floor voids or chase into the wall. Quoted on survey." },
-      { q: "Do you supply the radiators?", a: "We can, or you can. Either way we'll check the spec before ordering." },
+      {
+        q: "Will a designer rad heat the room as well as my old one?",
+        a: "Only if it's sized right. We always calculate BTU first so the new one matches or beats the old output.",
+      },
+      {
+        q: "Can you move a radiator to a different wall?",
+        a: "Yes — we run new pipework in floor voids or chase into the wall. Quoted on survey.",
+      },
+      {
+        q: "Do you supply the radiators?",
+        a: "We can, or you can. Either way we'll check the spec before ordering.",
+      },
     ],
     related: ["underfloor-heating", "bathroom-suites", "boiler-installations"],
   },
@@ -382,20 +637,47 @@ export const SERVICE_DETAILS: Record<
       "One named contact, one direct number, and an engineer who'll actually remember your site. No call centre, no ticketing system, no being passed around three departments.",
     ],
     process: [
-      { title: "Site survey", description: "We walk the plant room, log appliances, and map out what's there now." },
-      { title: "Maintenance plan", description: "Annual or quarterly visits, scoped to your equipment and compliance needs." },
-      { title: "Compliance certificates", description: "Gas safety, CP12 landlord, commercial catering — issued and stored digitally." },
-      { title: "Priority response", description: "Contract clients jump the queue. Most reactive calls attended same or next working day." },
+      {
+        title: "Site survey",
+        description: "We walk the plant room, log appliances, and map out what's there now.",
+      },
+      {
+        title: "Maintenance plan",
+        description: "Annual or quarterly visits, scoped to your equipment and compliance needs.",
+      },
+      {
+        title: "Compliance certificates",
+        description:
+          "Gas safety, CP12 landlord, commercial catering — issued and stored digitally.",
+      },
+      {
+        title: "Priority response",
+        description:
+          "Contract clients jump the queue. Most reactive calls attended same or next working day.",
+      },
     ],
     pricing: [
-      { label: "Commercial gas safety check", price: "from £120", note: "Per appliance, quoted on site" },
+      {
+        label: "Commercial gas safety check",
+        price: "from £120",
+        note: "Per appliance, quoted on site",
+      },
       { label: "Landlord CP12 certificate", price: "from £85", note: "Up to 3 appliances" },
       { label: "Planned maintenance contract", price: "POA", note: "Tailored to portfolio" },
     ],
     faqs: [
-      { q: "Do you cover multi-site landlords?", a: "Yes — we manage portfolios of 5 to 100+ properties with rolling CP12 renewal schedules." },
-      { q: "What's your response time?", a: "Contract clients get same/next working day for reactive calls. Emergencies are attended within hours." },
-      { q: "Do you carry public liability cover?", a: "£5m public liability, £10m employers' liability — certificates available on request." },
+      {
+        q: "Do you cover multi-site landlords?",
+        a: "Yes — we manage portfolios of 5 to 100+ properties with rolling CP12 renewal schedules.",
+      },
+      {
+        q: "What's your response time?",
+        a: "Contract clients get same/next working day for reactive calls. Emergencies are attended within hours.",
+      },
+      {
+        q: "Do you carry public liability cover?",
+        a: "£5m public liability, £10m employers' liability — certificates available on request.",
+      },
     ],
     related: ["boiler-servicing", "boiler-installations", "maintenance-repairs"],
   },

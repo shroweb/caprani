@@ -9,7 +9,11 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Caprani Plumbing & Heating | Family-run in Hull since 2016" },
-      { name: "description", content: "Meet the Caprani team. A family-run, Gas Safe and OFTEC registered plumbing & heating business serving Hull and East Yorkshire since 2016." },
+      {
+        name: "description",
+        content:
+          "Meet the Caprani team. A family-run, Gas Safe and OFTEC registered plumbing & heating business serving Hull and East Yorkshire since 2016.",
+      },
     ],
   }),
 });
@@ -18,24 +22,24 @@ function About() {
   return (
     <>
       {/* Page hero */}
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
-          <span className="section-label text-accent before:bg-accent">About us</span>
-          <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
-            Hull's family-run<br />plumbing &amp; heating team
+      <section className="page-hero">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <h1 className="text-4xl font-black sm:text-5xl lg:text-6xl">
+            Hull's family-run
+            <br />
+            plumbing &amp; heating team
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/75">
             Founded in {SITE.founded}, Caprani Plumbing & Heating is a small, family-run business
-            based in Hull — dedicated to domestic and commercial clients across the city and East Yorkshire.
+            based in Hull — dedicated to domestic and commercial clients across the city and East
+            Yorkshire.
           </p>
         </div>
       </section>
 
-      {/* Values — left-border pillar layout */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>
-          <span className="section-label">Our values</span>
-          <h2 className="mt-4 text-2xl font-black sm:text-3xl">What we stand for</h2>
+          <h2 className="text-2xl font-black sm:text-3xl">What we stand for</h2>
         </Reveal>
         <div className="mt-10 grid gap-10 sm:grid-cols-3">
           {[
@@ -63,11 +67,11 @@ function About() {
       </section>
 
       {/* Accreditations */}
-      <section className="border-y border-border bg-secondary/30">
+      <section className="border-y border-border bg-secondary/45">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="grid gap-5 sm:grid-cols-2">
-            <div className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 shadow-sm">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+            <div className="premium-panel flex items-center gap-4 rounded-md p-5">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-accent text-accent-foreground">
                 <ShieldCheck className="h-6 w-6" />
               </div>
               <div>
@@ -75,8 +79,8 @@ function About() {
                 <div className="text-sm text-muted-foreground">Registration No. {SITE.gasSafe}</div>
               </div>
             </div>
-            <div className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 shadow-sm">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+            <div className="premium-panel flex items-center gap-4 rounded-md p-5">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-accent text-accent-foreground">
                 <BadgeCheck className="h-6 w-6" />
               </div>
               <div>
@@ -91,17 +95,17 @@ function About() {
       {/* Team */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>
-          <span className="section-label">Meet the team</span>
-          <h2 className="mt-4 text-3xl font-black sm:text-4xl">#TeamCAPRANI</h2>
+          <h2 className="text-3xl font-black sm:text-4xl">Meet the team</h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            The people who'll actually turn up at your door — engineers, apprentices, office team, and one very important office dog.
+            The people who will actually turn up at your door: engineers, apprentices, and the
+            office team keeping each job moving.
           </p>
         </Reveal>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
           {TEAM.map((p, i) => (
             <Reveal key={p.name} delay={i * 45}>
-              <figure className="group overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-accent/20">
+              <figure className="service-card group overflow-hidden rounded-md">
                 <div className="aspect-square overflow-hidden bg-secondary">
                   <img
                     src={p.img}

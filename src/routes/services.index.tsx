@@ -9,7 +9,11 @@ export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Services — Caprani Plumbing & Heating Hull" },
-      { name: "description", content: "Boiler installations, repairs, bathroom suites, underfloor heating and more across Hull & East Yorkshire. Gas Safe and OFTEC registered." },
+      {
+        name: "description",
+        content:
+          "Boiler installations, repairs, bathroom suites, underfloor heating and more across Hull & East Yorkshire. Gas Safe and OFTEC registered.",
+      },
     ],
   }),
 });
@@ -20,25 +24,27 @@ function ServicesIndex() {
   return (
     <>
       {/* Page hero */}
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
-          <span className="section-label text-accent before:bg-accent">Services</span>
-          <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
-            Plumbing &amp; heating,<br />done properly
+      <section className="page-hero">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <h1 className="text-4xl font-black sm:text-5xl">
+            Plumbing &amp; heating,
+            <br />
+            done properly
           </h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/75">
-            Whatever you need — a new boiler, a leak fixed, or a full bathroom refit — our Hull team handles it from start to finish.
+            Whatever you need — a new boiler, a leak fixed, or a full bathroom refit — our Hull team
+            handles it from start to finish.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
         {/* Featured first service */}
         <Reveal>
           <Link
             to="/services/$slug"
             params={{ slug: featured.slug }}
-            className="group mb-8 flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/25 hover:shadow-xl sm:flex-row"
+            className="service-card group mb-8 flex flex-col overflow-hidden rounded-md sm:flex-row"
           >
             <div className="aspect-[4/3] overflow-hidden bg-secondary sm:aspect-auto sm:w-2/5 sm:shrink-0">
               <img
@@ -50,11 +56,10 @@ function ServicesIndex() {
             </div>
             <div className="flex flex-1 flex-col justify-between p-8 sm:p-10">
               <div>
-                <span className="section-label text-accent before:bg-accent">Featured service</span>
-                <h2 className="mt-4 text-2xl font-black tracking-tight sm:text-3xl">
-                  {featured.title}
-                </h2>
-                <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">{featured.short}</p>
+                <h2 className="text-2xl font-black sm:text-3xl">{featured.title}</h2>
+                <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">
+                  {featured.short}
+                </p>
               </div>
               <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-accent">
                 View service{" "}
@@ -71,7 +76,7 @@ function ServicesIndex() {
               <Link
                 to="/services/$slug"
                 params={{ slug: s.slug }}
-                className="group block overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/25 hover:shadow-xl"
+                className="service-card group block h-full overflow-hidden rounded-md"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-secondary">
                   <img

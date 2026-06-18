@@ -9,14 +9,21 @@ export const Route = createFileRoute("/care-plans")({
   head: () => ({
     meta: [
       { title: "Landlord Care Plan — £29.99/mo | Caprani Plumbing & Heating Hull" },
-      { name: "description", content: "All-inclusive Landlord Care Plan from £29.99 + VAT per month. Unlimited 24/7 call-outs, CP12, annual boiler service, CO alarm check. Hull & East Yorkshire." },
+      {
+        name: "description",
+        content:
+          "All-inclusive Landlord Care Plan from £29.99 + VAT per month. Unlimited 24/7 call-outs, CP12, annual boiler service, CO alarm check. Hull & East Yorkshire.",
+      },
     ],
   }),
 });
 
 const included = [
   { t: "Unlimited 24/7 call-outs", d: "No call-out charges, ever. Day or night." },
-  { t: "CP12 Landlord Gas Safety Certificate", d: "Annual inspection covering 1 gas boiler + 1 additional gas appliance." },
+  {
+    t: "CP12 Landlord Gas Safety Certificate",
+    d: "Annual inspection covering 1 gas boiler + 1 additional gas appliance.",
+  },
   { t: "Annual boiler service", d: "Full yearly service by a Gas Safe engineer." },
   { t: "Carbon monoxide alarm check", d: "Plus a FREE replacement CO alarm if found defective." },
   { t: "1 tap or 1 toilet repair", d: "We cover minor repairs — no separate trades needed." },
@@ -96,15 +103,12 @@ const excluded = [
 function CarePlans() {
   return (
     <>
-      {/* Page hero — dramatic price display */}
-      <section className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8">
-          <span className="section-label text-accent before:bg-accent">Caprani Care Plans</span>
-          <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
-            Landlord Care Plan
-          </h1>
+      <section className="page-hero">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+          <h1 className="text-4xl font-black sm:text-5xl">Landlord Care Plan</h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-primary-foreground/75">
-            Hassle-free property maintenance and compliance in one monthly fee. Built for Hull landlords who want their phone to stop ringing at 11pm.
+            Hassle-free property maintenance and compliance in one monthly fee. Built for Hull
+            landlords who want their phone to stop ringing at 11pm.
           </p>
           <div className="mt-10">
             <div className="flex items-start gap-1">
@@ -115,7 +119,7 @@ function CarePlans() {
                 <div className="text-sm text-primary-foreground/55">/ month</div>
               </div>
             </div>
-            <div className="mt-3 inline-flex rounded-full bg-accent/15 px-4 py-1.5 text-xs font-semibold text-accent">
+            <div className="mt-3 inline-flex rounded-md border border-accent/25 bg-accent/12 px-4 py-1.5 text-xs font-semibold text-accent">
               12-month minimum · one property
             </div>
           </div>
@@ -123,7 +127,7 @@ function CarePlans() {
       </section>
 
       {/* Two-column content */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-3">
           {/* Main content — 2/3 */}
           <div className="lg:col-span-2">
@@ -136,7 +140,7 @@ function CarePlans() {
                 {included.map((item) => (
                   <li
                     key={item.t}
-                    className="flex gap-3 rounded-xl border border-border bg-card p-5"
+                    className="flex gap-3 rounded-md border border-border bg-card p-5"
                   >
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
                     <div>
@@ -164,16 +168,15 @@ function CarePlans() {
           {/* Sticky sidebar — 1/3 */}
           <aside className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
-              <div className="rounded-2xl border border-accent/30 bg-card p-6 shadow-xl shadow-accent/5">
-                <span className="section-label text-accent before:bg-accent">Get started</span>
-                <div className="mt-4 flex items-baseline gap-1">
+              <div className="premium-panel rounded-md border-accent/30 p-6">
+                <div className="flex items-baseline gap-1">
                   <span className="text-xl font-black text-accent">£</span>
                   <span className="stat-num text-4xl text-primary">29.99</span>
                   <span className="ml-1 text-sm text-muted-foreground">+ VAT/mo</span>
                 </div>
                 <Link
                   to="/contact"
-                  className="mt-5 inline-flex w-full items-center justify-center rounded-md bg-accent px-5 py-3.5 text-sm font-bold text-accent-foreground transition-all hover:scale-[1.01] hover:bg-accent/90"
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-md bg-accent px-5 py-3.5 text-sm font-bold text-accent-foreground transition-colors hover:bg-accent/90"
                 >
                   Sign up online
                 </Link>
@@ -193,8 +196,9 @@ function CarePlans() {
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-border bg-secondary/40 p-5 text-xs leading-relaxed text-muted-foreground">
-                Full exclusions are listed below. We'll walk you through everything before you sign — no surprises.
+              <div className="rounded-md border border-border bg-secondary/40 p-5 text-xs leading-relaxed text-muted-foreground">
+                Full exclusions are listed below. We'll walk you through everything before you sign
+                — no surprises.
               </div>
             </div>
           </aside>
@@ -202,7 +206,7 @@ function CarePlans() {
       </section>
 
       {/* Exclusions */}
-      <section className="border-t border-border bg-secondary/25">
+      <section className="border-t border-border bg-secondary/45">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-xl font-black">What's not covered</h2>
@@ -213,10 +217,8 @@ function CarePlans() {
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {excluded.map((cat, i) => (
               <Reveal key={cat.category} delay={i * 55}>
-                <div className="rounded-xl border border-border bg-card p-5">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-accent">
-                    {cat.category}
-                  </h3>
+                <div className="rounded-md border border-border bg-card p-5">
+                  <h3 className="text-sm font-bold text-foreground">{cat.category}</h3>
                   <ul className="mt-3 space-y-1.5">
                     {cat.items.map((item) => (
                       <li
