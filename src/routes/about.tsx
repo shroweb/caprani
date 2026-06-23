@@ -1,14 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, BadgeCheck } from "lucide-react";
-import { SITE, DIRECTOR_QUOTE } from "@/lib/site";
-import { getTeamMembers } from "@/lib/cms/content";
+import { getAboutPage, getTeamMembers } from "@/lib/cms/content";
+import { useSiteData } from "@/lib/site-data";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/about")({
   component: About,
-  loader: () => getTeamMembers(),
+  loader: async () => {
+    const [team, page] = await Promise.all([getTeamMembers(), getAboutPage()]);
+    return { team, page };
+  },
   head: () => ({
     meta: [
       { title: "About — Caprani Plumbing & Heating | Family-run in Hull since 2016" },
@@ -22,22 +25,17 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
-  const team = Route.useLoaderData();
+  const { team, page } = Route.useLoaderData();
+  const { siteSettings: SITE } = useSiteData();
 
   return (
     <>
       {/* Page hero */}
       <section className="page-hero">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <h1 className="text-4xl font-black sm:text-5xl lg:text-6xl">
-            Hull's family-run
-            <br />
-            plumbing &amp; heating team
-          </h1>
+          <h1 className="text-4xl font-black sm:text-5xl lg:text-6xl">{page.heroTitle}</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/75">
-            Founded in {SITE.founded}, Caprani Plumbing & Heating is a small, family-run business
-            based in Hull — dedicated to domestic and commercial clients across the city and East
-            Yorkshire.
+            {page.heroText}
           </p>
           <GoogleRating className="mt-7" />
         </div>
@@ -48,24 +46,13 @@ function About() {
           <h2 className="text-2xl font-black sm:text-3xl">What we stand for</h2>
         </Reveal>
         <div className="mt-10 grid gap-10 sm:grid-cols-3">
-          {[
-            {
-              t: "Raising industry standards",
-              d: "Continuous improvement, innovation and adherence to the highest quality and safety protocols. Every job, every time.",
-            },
-            {
-              t: "Customer focused",
-              d: "Tailored, reliable, friendly service for every client we serve — domestic and commercial. No call centres, just people.",
-            },
-            {
-              t: "Investing in young people",
-              d: "Apprenticeships and training to empower the next generation in plumbing and heating. George and Tyler are proof.",
-            },
-          ].map((v, i) => (
-            <Reveal key={v.t} delay={i * 80}>
+          {page.values.map((v, i) => (
+            <Reveal key={v.title} delay={i * 80}>
               <div className="border-l-2 border-accent py-1 pl-6">
-                <h3 className="text-lg font-bold">{v.t}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{v.d}</p>
+                <h3 className="text-lg font-bold">{v.title}</h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                  {v.description}
+                </p>
               </div>
             </Reveal>
           ))}
@@ -102,10 +89,7 @@ function About() {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-3xl font-black sm:text-4xl">Meet the team</h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            The people who will actually turn up at your door: engineers, apprentices, and the
-            office team keeping each job moving.
-          </p>
+          <p className="mt-3 max-w-2xl text-muted-foreground">{page.teamIntro}</p>
         </Reveal>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
@@ -146,12 +130,12 @@ function About() {
               "
             </div>
             <blockquote className="-mt-8 text-2xl font-medium leading-snug sm:text-3xl lg:text-4xl">
-              {DIRECTOR_QUOTE.text}
+              {page.quoteText}
             </blockquote>
             <div className="mt-10 flex items-center gap-4">
               <div className="h-px w-10 bg-accent" />
               <cite className="text-sm font-semibold not-italic text-primary-foreground/60">
-                {DIRECTOR_QUOTE.attribution}
+                {page.quoteAttribution}
               </cite>
             </div>
           </Reveal>

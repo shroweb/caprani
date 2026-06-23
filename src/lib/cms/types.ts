@@ -18,6 +18,7 @@ export type CmsSiteSettings = {
   email: string;
   address: string;
   area?: string;
+  founded?: number;
   gasSafe?: string;
   oftec?: string;
   companyNo?: string;
@@ -27,6 +28,7 @@ export type CmsSiteSettings = {
     reviewsUrl: string;
   };
   social: Record<"facebook" | "instagram" | "tiktok" | "youtube", string>;
+  footerTagline?: string;
   seo?: CmsSeo;
 };
 
@@ -136,5 +138,51 @@ export type CmsLegalPage = {
   title: string;
   slug: string;
   body: CmsPortableBlock[];
+  seo?: CmsSeo;
+};
+
+export type CmsNavLink = {
+  label: string;
+  href: string;
+};
+
+export type CmsNavigation = {
+  links: CmsNavLink[];
+  footerLinks: CmsNavLink[];
+};
+
+export type CmsValueItem = {
+  title: string;
+  description: string;
+};
+
+export type CmsAboutPage = {
+  heroTitle: string;
+  heroText: string;
+  values: CmsValueItem[];
+  teamIntro?: string;
+  quoteText: string;
+  quoteAttribution?: string;
+  seo?: CmsSeo;
+};
+
+export type CmsContactPage = {
+  heroTitle: string;
+  heroText: string;
+  emergencyText?: string;
+  coverageTitle?: string;
+  coverageText?: string;
+  seo?: CmsSeo;
+};
+
+export type CmsServicesPage = {
+  heroTitle: string;
+  heroText: string;
+  seo?: CmsSeo;
+};
+
+export type CmsTestimonialsPage = {
+  heroTitle: string;
+  heroText: string;
   seo?: CmsSeo;
 };

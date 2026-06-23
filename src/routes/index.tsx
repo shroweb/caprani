@@ -1,20 +1,32 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Phone, ArrowRight, Star, ExternalLink } from "lucide-react";
-import { SITE, SERVICES, HERO_IMG, REVIEWS } from "@/lib/site";
 import { GoogleIcon } from "@/components/social-icons";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleRating } from "@/components/google-rating";
-import { getHomePage } from "@/lib/cms/content";
+import { getHomePage, getReviews, getServices } from "@/lib/cms/content";
+import { useSiteData } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  loader: () => getHomePage(),
+  loader: async () => {
+    const [homePage, services, reviews] = await Promise.all([
+      getHomePage(),
+      getServices(),
+      getReviews(),
+    ]);
+    return { homePage, services, reviews };
+  },
 });
 
 function Home() {
-  const { heroTitle, heroText, whyChooseUs, process } = Route.useLoaderData();
-  const yearsSince = new Date().getFullYear() - SITE.founded;
+  const {
+    homePage: { heroTitle, heroText, heroImage, whyChooseUs, process },
+    services,
+    reviews,
+  } = Route.useLoaderData();
+  const { siteSettings: SITE } = useSiteData();
+  const yearsSince = new Date().getFullYear() - (SITE.founded ?? 2016);
 
   return (
     <>
@@ -22,7 +34,7 @@ function Home() {
       <section className="relative">
         <div className="relative h-[86vh] min-h-[620px] w-full overflow-hidden bg-primary">
           <img
-            src={HERO_IMG}
+            src={heroImage}
             alt="The Caprani Plumbing & Heating team outside their Hull shopfront on Spring Bank West"
             className="h-full w-full object-cover object-[center_55%]"
             fetchPriority="high"
@@ -119,7 +131,7 @@ function Home() {
 
             <div className="lg:col-span-8">
               <ul className="grid gap-4 sm:grid-cols-2">
-                {SERVICES.map((s, i) => (
+                {services.map((s, i) => (
                   <Reveal key={s.slug} delay={i * 45}>
                     <Link
                       to="/services/$slug"
@@ -234,24 +246,24 @@ function Home() {
                 "
               </div>
               <blockquote className="-mt-6 text-xl font-medium leading-relaxed sm:text-2xl">
-                {REVIEWS[0].text}
+                {reviews[0].text}
               </blockquote>
               <figcaption className="mt-8 flex flex-wrap items-center gap-4">
                 <div className="flex">
-                  {Array.from({ length: REVIEWS[0].rating }).map((_, j) => (
+                  {Array.from({ length: reviews[0].rating }).map((_, j) => (
                     <Star key={j} className="h-4 w-4 fill-accent text-accent" />
                   ))}
                 </div>
-                <span className="font-semibold">{REVIEWS[0].name}</span>
+                <span className="font-semibold">{reviews[0].name}</span>
                 <span className="text-sm text-primary-foreground/50">via Google</span>
               </figcaption>
             </figure>
           </Reveal>
 
           {/* Supporting reviews */}
-          {REVIEWS.length > 1 && (
+          {reviews.length > 1 && (
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
-              {REVIEWS.slice(1).map((r, i) => (
+              {reviews.slice(1).map((r, i) => (
                 <Reveal key={r.name} delay={i * 60}>
                   <figure className="flex h-full flex-col rounded-md border border-border bg-card p-6 shadow-sm">
                     <div className="flex">

@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, CalendarDays } from "lucide-react";
-import { SITE } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 
 export function MobileCta() {
+  const { siteSettings: SITE } = useSiteData();
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 flex border-t border-white/10 bg-primary sm:hidden">
       <a

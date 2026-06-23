@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { SITE } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 import { GoogleRating } from "@/components/google-rating";
 import { getLegalPage } from "@/lib/cms/content";
 
@@ -31,6 +31,7 @@ const legalComponents: PortableTextComponents = {
 
 function Privacy() {
   const page = Route.useLoaderData();
+  const { siteSettings: SITE } = useSiteData();
 
   return (
     <>

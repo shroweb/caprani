@@ -1,8 +1,9 @@
 import { Star } from "lucide-react";
-import { SITE } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 import { GoogleIcon } from "@/components/social-icons";
 
 export function GoogleRating({ className = "" }: { className?: string }) {
+  const { siteSettings: SITE } = useSiteData();
   return (
     <a
       href={SITE.google.reviewsUrl}

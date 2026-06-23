@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, ArrowRight } from "lucide-react";
-import { SITE } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 
 export function CtaBand({ title = "Need a Gas Safe engineer today?" }: { title?: string }) {
+  const { siteSettings: SITE } = useSiteData();
   return (
     <section className="bg-primary">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">

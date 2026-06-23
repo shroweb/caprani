@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { SITE } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 import { GoogleRating } from "@/components/google-rating";
 import { getLegalPage } from "@/lib/cms/content";
 import type { CmsPortableBlock } from "@/lib/cms/types";
@@ -49,6 +49,7 @@ function legalComponents(headingNumbers: Map<number, number>): PortableTextCompo
 
 function Terms() {
   const page = Route.useLoaderData();
+  const { siteSettings: SITE } = useSiteData();
 
   return (
     <>

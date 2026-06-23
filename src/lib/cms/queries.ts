@@ -6,6 +6,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   email,
   address,
   area,
+  founded,
   gasSafe,
   oftec,
   companyNo,
@@ -13,6 +14,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   googleReviewCount,
   googleReviewsUrl,
   social,
+  footerTagline,
   seo{title, description, "image": image{..., "alt": alt}}
 }`;
 
@@ -109,5 +111,41 @@ export const legalPageQuery = `*[_type == "legalPage" && slug.current == $slug][
   title,
   "slug": slug.current,
   body,
+  seo{title, description, "image": image{..., "alt": alt}}
+}`;
+
+export const navigationQuery = `*[_type == "navigation"][0]{
+  links,
+  footerLinks
+}`;
+
+export const aboutPageQuery = `*[_type == "aboutPage"][0]{
+  heroTitle,
+  heroText,
+  values,
+  teamIntro,
+  quoteText,
+  quoteAttribution,
+  seo{title, description, "image": image{..., "alt": alt}}
+}`;
+
+export const contactPageQuery = `*[_type == "contactPage"][0]{
+  heroTitle,
+  heroText,
+  emergencyText,
+  coverageTitle,
+  coverageText,
+  seo{title, description, "image": image{..., "alt": alt}}
+}`;
+
+export const servicesPageQuery = `*[_type == "servicesPage"][0]{
+  heroTitle,
+  heroText,
+  seo{title, description, "image": image{..., "alt": alt}}
+}`;
+
+export const testimonialsPageQuery = `*[_type == "testimonialsPage"][0]{
+  heroTitle,
+  heroText,
   seo{title, description, "image": image{..., "alt": alt}}
 }`;

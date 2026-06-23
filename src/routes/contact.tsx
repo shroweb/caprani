@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { Phone, Mail, MapPin, Check, Clock } from "lucide-react";
-import { SITE, SERVICES } from "@/lib/site";
+import { getContactPage, getServices } from "@/lib/cms/content";
+import { useSiteData } from "@/lib/site-data";
 import { Reveal } from "@/components/reveal";
 import { GoogleRating } from "@/components/google-rating";
 
@@ -18,6 +19,10 @@ const schema = z.object({
 
 export const Route = createFileRoute("/contact")({
   component: Contact,
+  loader: async () => {
+    const [page, services] = await Promise.all([getContactPage(), getServices()]);
+    return { page, services };
+  },
   head: () => ({
     meta: [
       { title: "Contact & Book — Caprani Plumbing & Heating Hull" },
@@ -31,6 +36,8 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const { page, services } = Route.useLoaderData();
+  const { siteSettings: SITE } = useSiteData();
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState("");
@@ -90,15 +97,8 @@ function Contact() {
     <>
       <section className="page-hero">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <h1 className="text-4xl font-black sm:text-5xl">
-            Book a job or
-            <br />
-            get a free quote
-          </h1>
-          <p className="mt-4 max-w-2xl text-primary-foreground/75">
-            Tell us what you need and a preferred date — we'll be in touch the same day. For
-            emergencies, please call us directly.
-          </p>
+          <h1 className="text-4xl font-black sm:text-5xl">{page.heroTitle}</h1>
+          <p className="mt-4 max-w-2xl text-primary-foreground/75">{page.heroText}</p>
           <GoogleRating className="mt-7" />
         </div>
       </section>
@@ -157,7 +157,7 @@ function Contact() {
                         <option value="" disabled>
                           Choose a service
                         </option>
-                        {SERVICES.map((s) => (
+                        {services.map((s) => (
                           <option key={s.slug} value={s.title}>
                             {s.title}
                           </option>
@@ -242,21 +242,15 @@ function Contact() {
             {/* Emergency callout */}
             <div className="mt-5 flex items-start gap-3 rounded-md border border-accent/20 bg-accent/5 p-4">
               <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              <div className="text-xs leading-relaxed">
-                <strong className="font-semibold text-foreground">24/7 emergency cover.</strong> No
-                heating, a gas leak, or a burst pipe? Call us any time — we'll come out.
-              </div>
+              <div className="text-xs leading-relaxed">{page.emergencyText}</div>
             </div>
           </div>
 
           {/* Map */}
           <div className="overflow-hidden rounded-md border border-border bg-card">
             <div className="px-5 pb-3 pt-5">
-              <h3 className="font-black">Our coverage area</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Hull, Hessle, Cottingham, Anlaby, Kingswood, Beverley and surrounding East
-                Yorkshire.
-              </p>
+              <h3 className="font-black">{page.coverageTitle}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{page.coverageText}</p>
             </div>
             <iframe
               title="Hull coverage map"

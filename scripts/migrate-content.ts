@@ -1,5 +1,5 @@
 import { createClient } from "@sanity/client";
-import { SERVICES, SERVICE_DETAILS, TEAM, REVIEWS, SITE } from "../src/lib/site";
+import { SERVICES, SERVICE_DETAILS, TEAM, REVIEWS, SITE, DIRECTOR_QUOTE } from "../src/lib/site";
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset = process.env.SANITY_STUDIO_DATASET ?? "production";
@@ -318,85 +318,83 @@ function block(style: "normal" | "h2" | "h3", text: string) {
   };
 }
 
-const legalContent: Record<
-  string,
-  { title: string; sections: { title: string; body: string }[] }
-> = {
-  terms: {
-    title: "Terms & Conditions",
-    sections: [
-      {
-        title: "Company details",
-        body: `${SITE.legalName}, ${SITE.address}. Telephone: ${SITE.phone}. Company registered in England, No. ${SITE.companyNo}.`,
-      },
-      {
-        title: "Formation of contract",
-        body: "A binding contract is formed when you confirm a booking, accept a written quotation, pay a deposit, or permit work to commence. These terms apply to all such contracts.",
-      },
-      {
-        title: "Quotations",
-        body: "Written quotations are valid for 14 days unless otherwise stated. Pricing may be revised if hidden defects, unforeseen site conditions, or access difficulties materially affect the scope of work. We will notify you before proceeding with any variation.",
-      },
-      {
-        title: "Deposits and payment",
-        body: "Works exceeding £500 require a 50% deposit before commencement. Projects over £5,000 are subject to staged payments agreed in advance. Invoices are due within 7 days of issue. Late payments incur an administration charge of £50 + VAT plus statutory interest under the Late Payment of Commercial Debts (Interest) Act 1998.",
-      },
-      {
-        title: "Labour charges",
-        body: "Labour is charged in minimum increments of one hour. Chargeable time includes diagnostics, material ordering, administration, certification, and travel where applicable.",
-      },
-      {
-        title: "Cancellations",
-        body: "Standard service appointments require at least 24 hours' notice of cancellation. Quoted or scheduled works require 7 working days' notice. Cancellations with insufficient notice may attract charges of between 20% and 100% of the agreed value. Deposits are non-refundable unless we are unable to fulfil the booking.",
-      },
-      {
-        title: "Workmanship warranty",
-        body: "Our workmanship is covered by a 12-month warranty against defects arising directly from work carried out by us. This does not extend to faults caused by pre-existing conditions, subsequent third-party interference, misuse, or fair wear and tear.",
-      },
-      {
-        title: "Consumer rights",
-        body: "If you are a domestic consumer and a contract is formed at a distance (e.g. by phone or online), you may have a 14-day cooling-off period under the Consumer Contracts Regulations 2013. If you request that work begins within this period, you may be charged for services rendered up to the point of cancellation.",
-      },
-      {
-        title: "Liability",
-        body: "Our liability is limited to the value of the works carried out. We are not liable for consequential or indirect losses. Nothing in these terms limits liability for death or personal injury caused by our negligence, or for any matter that cannot lawfully be excluded.",
-      },
-      {
-        title: "Governing law",
-        body: "These terms are governed by the law of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.",
-      },
-    ],
-  },
-  privacy: {
-    title: "Privacy Policy",
-    sections: [
-      {
-        title: "Who we are",
-        body: `${SITE.legalName} is the data controller for personal information collected through this website and in the course of providing our services. Registered address: ${SITE.address}. Company No. ${SITE.companyNo}.`,
-      },
-      {
-        title: "What we collect",
-        body: "When you use our contact or booking form, or call us, we collect your name, phone number, email address, and property address. We also collect basic analytics data (pages visited, approximate location) through cookies to help us improve the site. We do not collect payment card details directly — payments are handled by our approved providers.",
-      },
-      {
-        title: "How we use it",
-        body: "We use your contact details to respond to enquiries, schedule and carry out work, issue invoices, and send service reminders where you have agreed to this. We do not sell your data to third parties or use it for unsolicited marketing.",
-      },
-      {
-        title: "Cookies",
-        body: "We use cookies to analyse website traffic and optimise your experience. You can disable cookies in your browser settings, though some features of the site may not work as intended.",
-      },
-      {
-        title: "How long we keep it",
-        body: "We retain customer records for 7 years after the last transaction to meet our legal and accounting obligations, then securely delete them.",
-      },
-      {
-        title: "Your rights",
-        body: `Under UK GDPR you have the right to access, correct, or delete the personal data we hold about you. To make a request, contact us at ${SITE.email} or call ${SITE.phone}. If you are not satisfied with our response, you may complain to the Information Commissioner's Office (ico.org.uk).`,
-      },
-    ],
-  },
-};
+const legalContent: Record<string, { title: string; sections: { title: string; body: string }[] }> =
+  {
+    terms: {
+      title: "Terms & Conditions",
+      sections: [
+        {
+          title: "Company details",
+          body: `${SITE.legalName}, ${SITE.address}. Telephone: ${SITE.phone}. Company registered in England, No. ${SITE.companyNo}.`,
+        },
+        {
+          title: "Formation of contract",
+          body: "A binding contract is formed when you confirm a booking, accept a written quotation, pay a deposit, or permit work to commence. These terms apply to all such contracts.",
+        },
+        {
+          title: "Quotations",
+          body: "Written quotations are valid for 14 days unless otherwise stated. Pricing may be revised if hidden defects, unforeseen site conditions, or access difficulties materially affect the scope of work. We will notify you before proceeding with any variation.",
+        },
+        {
+          title: "Deposits and payment",
+          body: "Works exceeding £500 require a 50% deposit before commencement. Projects over £5,000 are subject to staged payments agreed in advance. Invoices are due within 7 days of issue. Late payments incur an administration charge of £50 + VAT plus statutory interest under the Late Payment of Commercial Debts (Interest) Act 1998.",
+        },
+        {
+          title: "Labour charges",
+          body: "Labour is charged in minimum increments of one hour. Chargeable time includes diagnostics, material ordering, administration, certification, and travel where applicable.",
+        },
+        {
+          title: "Cancellations",
+          body: "Standard service appointments require at least 24 hours' notice of cancellation. Quoted or scheduled works require 7 working days' notice. Cancellations with insufficient notice may attract charges of between 20% and 100% of the agreed value. Deposits are non-refundable unless we are unable to fulfil the booking.",
+        },
+        {
+          title: "Workmanship warranty",
+          body: "Our workmanship is covered by a 12-month warranty against defects arising directly from work carried out by us. This does not extend to faults caused by pre-existing conditions, subsequent third-party interference, misuse, or fair wear and tear.",
+        },
+        {
+          title: "Consumer rights",
+          body: "If you are a domestic consumer and a contract is formed at a distance (e.g. by phone or online), you may have a 14-day cooling-off period under the Consumer Contracts Regulations 2013. If you request that work begins within this period, you may be charged for services rendered up to the point of cancellation.",
+        },
+        {
+          title: "Liability",
+          body: "Our liability is limited to the value of the works carried out. We are not liable for consequential or indirect losses. Nothing in these terms limits liability for death or personal injury caused by our negligence, or for any matter that cannot lawfully be excluded.",
+        },
+        {
+          title: "Governing law",
+          body: "These terms are governed by the law of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.",
+        },
+      ],
+    },
+    privacy: {
+      title: "Privacy Policy",
+      sections: [
+        {
+          title: "Who we are",
+          body: `${SITE.legalName} is the data controller for personal information collected through this website and in the course of providing our services. Registered address: ${SITE.address}. Company No. ${SITE.companyNo}.`,
+        },
+        {
+          title: "What we collect",
+          body: "When you use our contact or booking form, or call us, we collect your name, phone number, email address, and property address. We also collect basic analytics data (pages visited, approximate location) through cookies to help us improve the site. We do not collect payment card details directly — payments are handled by our approved providers.",
+        },
+        {
+          title: "How we use it",
+          body: "We use your contact details to respond to enquiries, schedule and carry out work, issue invoices, and send service reminders where you have agreed to this. We do not sell your data to third parties or use it for unsolicited marketing.",
+        },
+        {
+          title: "Cookies",
+          body: "We use cookies to analyse website traffic and optimise your experience. You can disable cookies in your browser settings, though some features of the site may not work as intended.",
+        },
+        {
+          title: "How long we keep it",
+          body: "We retain customer records for 7 years after the last transaction to meet our legal and accounting obligations, then securely delete them.",
+        },
+        {
+          title: "Your rights",
+          body: `Under UK GDPR you have the right to access, correct, or delete the personal data we hold about you. To make a request, contact us at ${SITE.email} or call ${SITE.phone}. If you are not satisfied with our response, you may complain to the Information Commissioner's Office (ico.org.uk).`,
+        },
+      ],
+    },
+  };
 
 async function migrateLegalPages() {
   for (const [slug, page] of Object.entries(legalContent)) {
@@ -413,6 +411,110 @@ async function migrateLegalPages() {
   }
 }
 
+async function migrateNavigation() {
+  const doc = {
+    _id: "navigation-main",
+    _type: "navigation",
+    links: [
+      { _key: key(), label: "Home", href: "/" },
+      { _key: key(), label: "Services", href: "/services" },
+      { _key: key(), label: "Care Plans", href: "/care-plans" },
+      { _key: key(), label: "About", href: "/about" },
+      { _key: key(), label: "Reviews", href: "/testimonials" },
+      { _key: key(), label: "Jobs", href: "/jobs" },
+      { _key: key(), label: "Contact", href: "/contact" },
+    ],
+    footerLinks: [
+      { _key: key(), label: "About us", href: "/about" },
+      { _key: key(), label: "Care Plans", href: "/care-plans" },
+      { _key: key(), label: "Reviews", href: "/testimonials" },
+      { _key: key(), label: "Careers", href: "/jobs" },
+      { _key: key(), label: "Contact", href: "/contact" },
+      { _key: key(), label: "Terms & Conditions", href: "/terms" },
+      { _key: key(), label: "Privacy Policy", href: "/privacy" },
+    ],
+  };
+  await client.createOrReplace(doc);
+  console.log("✓ navigation");
+}
+
+async function migrateAboutPage() {
+  const doc = {
+    _id: "aboutPage-main",
+    _type: "aboutPage",
+    heroTitle: "Hull's family-run plumbing & heating team",
+    heroText:
+      "Founded in 2016, Caprani Plumbing & Heating is a small, family-run business based in Hull — dedicated to domestic and commercial clients across the city and East Yorkshire.",
+    values: [
+      {
+        _key: key(),
+        title: "Raising industry standards",
+        description:
+          "Continuous improvement, innovation and adherence to the highest quality and safety protocols. Every job, every time.",
+      },
+      {
+        _key: key(),
+        title: "Customer focused",
+        description:
+          "Tailored, reliable, friendly service for every client we serve — domestic and commercial. No call centres, just people.",
+      },
+      {
+        _key: key(),
+        title: "Investing in young people",
+        description:
+          "Apprenticeships and training to empower the next generation in plumbing and heating. George and Tyler are proof.",
+      },
+    ],
+    teamIntro:
+      "The people who will actually turn up at your door: engineers, apprentices, and the office team keeping each job moving.",
+    quoteText: DIRECTOR_QUOTE.text,
+    quoteAttribution: DIRECTOR_QUOTE.attribution,
+  };
+  await client.createOrReplace(doc);
+  console.log("✓ about page");
+}
+
+async function migrateContactPage() {
+  const doc = {
+    _id: "contactPage-main",
+    _type: "contactPage",
+    heroTitle: "Book a job or get a free quote",
+    heroText:
+      "Tell us what you need and a preferred date — we'll be in touch the same day. For emergencies, please call us directly.",
+    emergencyText:
+      "24/7 emergency cover. No heating, a gas leak, or a burst pipe? Call us any time — we'll come out.",
+    coverageTitle: "Our coverage area",
+    coverageText:
+      "Hull, Hessle, Cottingham, Anlaby, Kingswood, Beverley and surrounding East Yorkshire.",
+  };
+  await client.createOrReplace(doc);
+  console.log("✓ contact page");
+}
+
+async function migrateServicesPage() {
+  const doc = {
+    _id: "servicesPage-main",
+    _type: "servicesPage",
+    heroTitle: "Plumbing & heating, done properly",
+    heroText:
+      "Whatever you need — a new boiler, a leak fixed, or a full bathroom refit — our Hull team handles it from start to finish.",
+  };
+  await client.createOrReplace(doc);
+  console.log("✓ services page");
+}
+
+async function migrateTestimonialsPage() {
+  const doc = {
+    _id: "testimonialsPage-main",
+    _type: "testimonialsPage",
+    heroTitle: "What our customers say",
+    heroText:
+      "We don't make these up. See the latest reviews and job photos on our Facebook, Instagram and Google pages.",
+  };
+  await client.createOrReplace(doc);
+  console.log("✓ testimonials page");
+}
+
 async function main() {
   await migrateServices();
   await migrateTeam();
@@ -421,6 +523,11 @@ async function main() {
   await migrateJobsPage();
   await migrateHomePage();
   await migrateLegalPages();
+  await migrateNavigation();
+  await migrateAboutPage();
+  await migrateContactPage();
+  await migrateServicesPage();
+  await migrateTestimonialsPage();
   console.log("\nMigration complete.");
 }
 

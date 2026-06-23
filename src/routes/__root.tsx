@@ -13,6 +13,8 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { MobileCta } from "@/components/mobile-cta";
 import { SITE } from "@/lib/site";
+import { getNavigation, getServices, getSiteSettings } from "@/lib/cms/content";
+import { SiteDataProvider } from "@/lib/site-data";
 
 function NotFoundComponent() {
   return (
@@ -72,83 +74,94 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Caprani Plumbing & Heating | Hull Gas Safe Engineers" },
-      {
-        name: "description",
-        content:
-          "Hull's local plumbing & heating experts. Gas Safe registered, 24/7 emergency call-outs across Hull & East Yorkshire. Call 01482 762888.",
-      },
-      { name: "author", content: "Caprani Plumbing & Heating" },
-      { property: "og:title", content: "Caprani Plumbing & Heating | Hull" },
-      {
-        property: "og:description",
-        content:
-          "Domestic & commercial plumbing and heating in Hull. 24/7 emergency. Gas Safe registered.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: SITE.url },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Plumber",
-          name: SITE.name,
-          legalName: SITE.legalName,
-          url: SITE.url,
-          telephone: SITE.phone,
-          email: SITE.email,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "896 Spring Bank West",
-            addressLocality: "Hull",
-            postalCode: "HU5 5BL",
-            addressRegion: "East Yorkshire",
-            addressCountry: "GB",
-          },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: SITE.google.rating,
-            reviewCount: SITE.google.reviewCount,
-          },
-          areaServed: { "@type": "AdministrativeArea", name: SITE.area },
-          openingHoursSpecification: {
-            "@type": "OpeningHoursSpecification",
-            dayOfWeek: [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday",
-            ],
-            opens: "00:00",
-            closes: "23:59",
-          },
-          sameAs: Object.values(SITE.social),
-          foundingDate: String(SITE.founded),
-        }),
-      },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap",
-      },
-    ],
-  }),
+  loader: async () => {
+    const [siteSettings, navigation, services] = await Promise.all([
+      getSiteSettings(),
+      getNavigation(),
+      getServices(),
+    ]);
+    return { siteSettings, navigation, services };
+  },
+  head: ({ loaderData }) => {
+    const site = loaderData?.siteSettings ?? SITE;
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: "Caprani Plumbing & Heating | Hull Gas Safe Engineers" },
+        {
+          name: "description",
+          content:
+            "Hull's local plumbing & heating experts. Gas Safe registered, 24/7 emergency call-outs across Hull & East Yorkshire. Call 01482 762888.",
+        },
+        { name: "author", content: "Caprani Plumbing & Heating" },
+        { property: "og:title", content: "Caprani Plumbing & Heating | Hull" },
+        {
+          property: "og:description",
+          content:
+            "Domestic & commercial plumbing and heating in Hull. 24/7 emergency. Gas Safe registered.",
+        },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { property: "og:url", content: site.url },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Plumber",
+            name: site.name,
+            legalName: site.legalName,
+            url: site.url,
+            telephone: site.phone,
+            email: site.email,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "896 Spring Bank West",
+              addressLocality: "Hull",
+              postalCode: "HU5 5BL",
+              addressRegion: "East Yorkshire",
+              addressCountry: "GB",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: site.google.rating,
+              reviewCount: site.google.reviewCount,
+            },
+            areaServed: { "@type": "AdministrativeArea", name: site.area },
+            openingHoursSpecification: {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ],
+              opens: "00:00",
+              closes: "23:59",
+            },
+            sameAs: Object.values(site.social),
+            foundingDate: String(SITE.founded),
+          }),
+        },
+      ],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        {
+          rel: "preconnect",
+          href: "https://fonts.googleapis.com",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap",
+        },
+      ],
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -171,15 +184,18 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const siteData = Route.useLoaderData();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteHeader />
-      <main>
-        <Outlet />
-      </main>
-      <SiteFooter />
-      <MobileCta />
+      <SiteDataProvider value={siteData}>
+        <SiteHeader />
+        <main>
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <MobileCta />
+      </SiteDataProvider>
     </QueryClientProvider>
   );
 }

@@ -1,22 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { SITE } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 import logo from "@/assets/caprani_logo_transparent.png";
 import { FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from "@/components/social-icons";
 
-const nav = [
-  { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
-  { to: "/care-plans", label: "Care Plans" },
-  { to: "/about", label: "About" },
-  { to: "/testimonials", label: "Reviews" },
-  { to: "/jobs", label: "Jobs" },
-  { to: "/contact", label: "Contact" },
-];
-
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { siteSettings: SITE, navigation } = useSiteData();
+  const nav = navigation.links;
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-primary/95 text-white shadow-[0_8px_30px_rgba(3,10,22,0.16)] backdrop-blur">
       {/* Top utility bar */}
@@ -68,10 +61,10 @@ export function SiteHeader() {
           <nav className="hidden items-center gap-1 rounded-md border border-white/10 bg-white/[0.04] p-1 lg:flex">
             {nav.map((n) => (
               <Link
-                key={n.to}
-                to={n.to}
+                key={n.href}
+                to={n.href}
                 className="rounded px-3 py-2 text-sm font-medium text-white/72 transition-colors hover:bg-white/8 hover:text-white [&.active]:bg-white/10 [&.active]:text-white"
-                activeOptions={{ exact: n.to === "/" }}
+                activeOptions={{ exact: n.href === "/" }}
               >
                 {n.label}
               </Link>
@@ -117,11 +110,11 @@ export function SiteHeader() {
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
             {nav.map((n) => (
               <Link
-                key={n.to}
-                to={n.to}
+                key={n.href}
+                to={n.href}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-3 text-sm font-medium text-white/82 transition-colors hover:bg-white/10 hover:text-white [&.active]:bg-white/10 [&.active]:text-white"
-                activeOptions={{ exact: n.to === "/" }}
+                activeOptions={{ exact: n.href === "/" }}
               >
                 {n.label}
               </Link>

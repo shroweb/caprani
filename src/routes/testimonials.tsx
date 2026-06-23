@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Star, ExternalLink, Facebook, Instagram, Youtube } from "lucide-react";
-import { SITE } from "@/lib/site";
-import { getReviews } from "@/lib/cms/content";
+import { getReviews, getTestimonialsPage } from "@/lib/cms/content";
+import { useSiteData } from "@/lib/site-data";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleIcon } from "@/components/social-icons";
@@ -9,30 +9,31 @@ import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/testimonials")({
   component: Testimonials,
-  loader: () => getReviews(),
+  loader: async () => {
+    const [reviews, page] = await Promise.all([getReviews(), getTestimonialsPage()]);
+    return { reviews, page };
+  },
   head: () => ({
     meta: [
       { title: "Reviews — Caprani Plumbing & Heating Hull" },
       {
         name: "description",
-        content: `${SITE.google.rating} stars on Google from ${SITE.google.reviewCount} reviews. See what Hull customers say about Caprani Plumbing & Heating.`,
+        content: "See what Hull customers say about Caprani Plumbing & Heating on Google.",
       },
     ],
   }),
 });
 
 function Testimonials() {
-  const reviews = Route.useLoaderData();
+  const { reviews, page } = Route.useLoaderData();
+  const { siteSettings: SITE } = useSiteData();
 
   return (
     <>
       <section className="page-hero">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <h1 className="text-4xl font-black sm:text-5xl">What our customers say</h1>
-          <p className="mt-4 max-w-2xl text-primary-foreground/75">
-            We don't make these up. See the latest reviews and job photos on our Facebook, Instagram
-            and Google pages.
-          </p>
+          <h1 className="text-4xl font-black sm:text-5xl">{page.heroTitle}</h1>
+          <p className="mt-4 max-w-2xl text-primary-foreground/75">{page.heroText}</p>
           <GoogleRating className="mt-8" />
         </div>
       </section>

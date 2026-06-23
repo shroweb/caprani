@@ -1,38 +1,53 @@
 import { imageUrl, cmsFetch } from "./client";
 import {
+  fallbackAboutPage,
   fallbackCarePlan,
+  fallbackContactPage,
   fallbackHomePage,
   fallbackJobsPage,
   fallbackLegalPage,
+  fallbackNavigation,
   fallbackReviews,
   fallbackServiceDetail,
   fallbackServices,
+  fallbackServicesPage,
   fallbackSiteSettings,
   fallbackTeam,
+  fallbackTestimonialsPage,
 } from "./fallback";
 import {
+  aboutPageQuery,
   carePlanQuery,
+  contactPageQuery,
   homePageQuery,
   jobsPageQuery,
   legalPageQuery,
+  navigationQuery,
   reviewsQuery,
   serviceDetailQuery,
+  servicesPageQuery,
   servicesQuery,
   siteAlertQuery,
   siteSettingsQuery,
   teamQuery,
+  testimonialsPageQuery,
 } from "./queries";
 import type {
+  CmsAboutPage,
   CmsCarePlan,
+  CmsContactPage,
   CmsHomePage,
   CmsJobsPage,
   CmsLegalPage,
+  CmsNavigation,
   CmsReview,
   CmsServiceDetail,
+  CmsServicesPage,
   CmsServiceSummary,
   CmsSiteAlert,
   CmsSiteSettings,
   CmsTeamMember,
+  CmsTestimonialsPage,
 } from "./types";
 
 type RawService = Omit<CmsServiceSummary, "image"> & { image?: unknown };
@@ -192,4 +207,38 @@ export async function getLegalPage(slug: string) {
   const raw = await cmsFetch<CmsLegalPage>(legalPageQuery, { slug });
   if (raw?.body?.length) return raw;
   return fallbackLegalPage(slug);
+}
+
+export async function getNavigation() {
+  const raw = await cmsFetch<CmsNavigation>(navigationQuery);
+  if (!raw) return fallbackNavigation;
+  return {
+    links: raw.links?.length ? raw.links : fallbackNavigation.links,
+    footerLinks: raw.footerLinks?.length ? raw.footerLinks : fallbackNavigation.footerLinks,
+  };
+}
+
+export async function getAboutPage() {
+  const raw = await cmsFetch<CmsAboutPage>(aboutPageQuery);
+  if (!raw) return fallbackAboutPage;
+  return {
+    ...fallbackAboutPage,
+    ...raw,
+    values: raw.values?.length ? raw.values : fallbackAboutPage.values,
+  };
+}
+
+export async function getContactPage() {
+  const raw = await cmsFetch<CmsContactPage>(contactPageQuery);
+  return raw ? { ...fallbackContactPage, ...raw } : fallbackContactPage;
+}
+
+export async function getServicesPage() {
+  const raw = await cmsFetch<CmsServicesPage>(servicesPageQuery);
+  return raw ? { ...fallbackServicesPage, ...raw } : fallbackServicesPage;
+}
+
+export async function getTestimonialsPage() {
+  const raw = await cmsFetch<CmsTestimonialsPage>(testimonialsPageQuery);
+  return raw ? { ...fallbackTestimonialsPage, ...raw } : fallbackTestimonialsPage;
 }

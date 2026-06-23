@@ -1,13 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { getServices } from "@/lib/cms/content";
+import { getServices, getServicesPage } from "@/lib/cms/content";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/services/")({
   component: ServicesIndex,
-  loader: () => getServices(),
+  loader: async () => {
+    const [services, page] = await Promise.all([getServices(), getServicesPage()]);
+    return { services, page };
+  },
   head: () => ({
     meta: [
       { title: "Services — Caprani Plumbing & Heating Hull" },
@@ -21,22 +24,16 @@ export const Route = createFileRoute("/services/")({
 });
 
 function ServicesIndex() {
-  const [featured, ...rest] = Route.useLoaderData();
+  const { services, page } = Route.useLoaderData();
+  const [featured, ...rest] = services;
 
   return (
     <>
       {/* Page hero */}
       <section className="page-hero">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <h1 className="text-4xl font-black sm:text-5xl">
-            Plumbing &amp; heating,
-            <br />
-            done properly
-          </h1>
-          <p className="mt-4 max-w-2xl text-primary-foreground/75">
-            Whatever you need — a new boiler, a leak fixed, or a full bathroom refit — our Hull team
-            handles it from start to finish.
-          </p>
+          <h1 className="text-4xl font-black sm:text-5xl">{page.heroTitle}</h1>
+          <p className="mt-4 max-w-2xl text-primary-foreground/75">{page.heroText}</p>
           <GoogleRating className="mt-7" />
         </div>
       </section>

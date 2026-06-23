@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Phone, ShieldCheck, Wrench, HelpCircle } from "lucide-react";
 import { getServiceDetail, getServices } from "@/lib/cms/content";
-import { SITE } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 import { Reveal } from "@/components/reveal";
 import { GoogleRating } from "@/components/google-rating";
 
@@ -29,6 +29,7 @@ export const Route = createFileRoute("/services/$slug")({
 
 function ServiceDetail() {
   const { service, details, services } = Route.useLoaderData();
+  const { siteSettings: SITE } = useSiteData();
   const related = (details?.related ?? [])
     .map((slug: string) => services.find((s) => s.slug === slug))
     .filter((item): item is NonNullable<typeof item> => Boolean(item));

@@ -1,15 +1,28 @@
-import { REVIEWS, SERVICE_DETAILS, SERVICES, SITE, TEAM } from "@/lib/site";
+import {
+  HERO_IMG,
+  REVIEWS,
+  SERVICE_DETAILS,
+  SERVICES,
+  SITE,
+  TEAM,
+  DIRECTOR_QUOTE,
+} from "@/lib/site";
 import type {
+  CmsAboutPage,
   CmsCarePlan,
+  CmsContactPage,
   CmsHomePage,
   CmsJobsPage,
   CmsLegalPage,
+  CmsNavigation,
   CmsPortableBlock,
   CmsReview,
   CmsServiceDetail,
+  CmsServicesPage,
   CmsServiceSummary,
   CmsSiteSettings,
   CmsTeamMember,
+  CmsTestimonialsPage,
 } from "./types";
 
 export const fallbackSiteSettings: CmsSiteSettings = SITE;
@@ -77,6 +90,7 @@ export const fallbackHomePage: CmsHomePage = {
   heroTitle: "Your local plumbing & heating team",
   heroText:
     "Gas Safe registered. Family-run. Boiler packed in or a pipe gone? Give us a ring — we'll pick up.",
+  heroImage: HERO_IMG,
   whyChooseUs: [
     {
       title: "We pick up the phone",
@@ -291,3 +305,73 @@ export function fallbackLegalPage(slug: string): CmsLegalPage | undefined {
     body: page.sections.flatMap((s) => [block(headingStyle, s.title), block("normal", s.body)]),
   };
 }
+
+export const fallbackNavigation: CmsNavigation = {
+  links: [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Care Plans", href: "/care-plans" },
+    { label: "About", href: "/about" },
+    { label: "Reviews", href: "/testimonials" },
+    { label: "Jobs", href: "/jobs" },
+    { label: "Contact", href: "/contact" },
+  ],
+  footerLinks: [
+    { label: "About us", href: "/about" },
+    { label: "Care Plans", href: "/care-plans" },
+    { label: "Reviews", href: "/testimonials" },
+    { label: "Careers", href: "/jobs" },
+    { label: "Contact", href: "/contact" },
+    { label: "Terms & Conditions", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy" },
+  ],
+};
+
+export const fallbackAboutPage: CmsAboutPage = {
+  heroTitle: "Hull's family-run plumbing & heating team",
+  heroText: `Founded in ${SITE.founded}, Caprani Plumbing & Heating is a small, family-run business based in Hull — dedicated to domestic and commercial clients across the city and East Yorkshire.`,
+  values: [
+    {
+      title: "Raising industry standards",
+      description:
+        "Continuous improvement, innovation and adherence to the highest quality and safety protocols. Every job, every time.",
+    },
+    {
+      title: "Customer focused",
+      description:
+        "Tailored, reliable, friendly service for every client we serve — domestic and commercial. No call centres, just people.",
+    },
+    {
+      title: "Investing in young people",
+      description:
+        "Apprenticeships and training to empower the next generation in plumbing and heating. George and Tyler are proof.",
+    },
+  ],
+  teamIntro:
+    "The people who will actually turn up at your door: engineers, apprentices, and the office team keeping each job moving.",
+  quoteText: DIRECTOR_QUOTE.text,
+  quoteAttribution: DIRECTOR_QUOTE.attribution,
+};
+
+export const fallbackContactPage: CmsContactPage = {
+  heroTitle: "Book a job or get a free quote",
+  heroText:
+    "Tell us what you need and a preferred date — we'll be in touch the same day. For emergencies, please call us directly.",
+  emergencyText:
+    "24/7 emergency cover. No heating, a gas leak, or a burst pipe? Call us any time — we'll come out.",
+  coverageTitle: "Our coverage area",
+  coverageText:
+    "Hull, Hessle, Cottingham, Anlaby, Kingswood, Beverley and surrounding East Yorkshire.",
+};
+
+export const fallbackServicesPage: CmsServicesPage = {
+  heroTitle: "Plumbing & heating, done properly",
+  heroText:
+    "Whatever you need — a new boiler, a leak fixed, or a full bathroom refit — our Hull team handles it from start to finish.",
+};
+
+export const fallbackTestimonialsPage: CmsTestimonialsPage = {
+  heroTitle: "What our customers say",
+  heroText:
+    "We don't make these up. See the latest reviews and job photos on our Facebook, Instagram and Google pages.",
+};

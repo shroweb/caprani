@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, X, Clock, ShieldCheck, Phone } from "lucide-react";
-import { SITE } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleRating } from "@/components/google-rating";
@@ -23,6 +23,7 @@ export const Route = createFileRoute("/care-plans")({
 
 function CarePlans() {
   const { title, intro, included, memberPerks, excluded } = Route.useLoaderData();
+  const { siteSettings: SITE } = useSiteData();
 
   return (
     <>

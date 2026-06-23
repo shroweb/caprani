@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, ShieldCheck, BadgeCheck, Clock, Zap } from "lucide-react";
-import { SITE, SERVICES } from "@/lib/site";
+import { useSiteData } from "@/lib/site-data";
 import { FacebookIcon, InstagramIcon, TikTokIcon, YouTubeIcon } from "@/components/social-icons";
 import logo from "@/assets/caprani_logo_transparent.png";
 
 export function SiteFooter() {
+  const { siteSettings: SITE, navigation, services } = useSiteData();
+
   return (
     <footer className="bg-primary pb-16 text-primary-foreground sm:pb-0">
       {/* Credentials trust strip */}
@@ -38,8 +40,8 @@ export function SiteFooter() {
             className="h-12 w-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
           />
           <p className="mt-4 text-sm leading-relaxed text-primary-foreground/65">
-            Hull's local Gas Safe plumbing and heating specialists. Domestic &amp; commercial, 24/7
-            emergency cover across {SITE.area}.
+            {SITE.footerTagline ??
+              `Hull's local Gas Safe plumbing and heating specialists. Domestic & commercial, 24/7 emergency cover across ${SITE.area}.`}
           </p>
           <div className="mt-5 flex items-center gap-3">
             {[
@@ -65,7 +67,7 @@ export function SiteFooter() {
         <div>
           <h4 className="text-sm font-bold text-primary-foreground/55">Services</h4>
           <ul className="mt-4 space-y-2.5 text-sm">
-            {SERVICES.slice(0, 6).map((s) => (
+            {services.slice(0, 6).map((s) => (
               <li key={s.slug}>
                 <Link
                   to="/services/$slug"
@@ -82,21 +84,13 @@ export function SiteFooter() {
         <div>
           <h4 className="text-sm font-bold text-primary-foreground/55">Company</h4>
           <ul className="mt-4 space-y-2.5 text-sm">
-            {[
-              { to: "/about", label: "About us" },
-              { to: "/care-plans", label: "Care Plans" },
-              { to: "/testimonials", label: "Reviews" },
-              { to: "/jobs", label: "Careers" },
-              { to: "/contact", label: "Contact" },
-              { to: "/terms", label: "Terms & Conditions" },
-              { to: "/privacy", label: "Privacy Policy" },
-            ].map(({ to, label }) => (
-              <li key={to}>
+            {navigation.footerLinks.map((link) => (
+              <li key={link.href}>
                 <Link
-                  to={to}
+                  to={link.href}
                   className="text-primary-foreground/70 transition-colors hover:text-accent"
                 >
-                  {label}
+                  {link.label}
                 </Link>
               </li>
             ))}

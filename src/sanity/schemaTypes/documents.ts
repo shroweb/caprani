@@ -12,6 +12,7 @@ export const siteSettings = defineType({
     defineField({ name: "email", type: "email", validation: (Rule) => Rule.required() }),
     defineField({ name: "address", type: "string", validation: (Rule) => Rule.required() }),
     defineField({ name: "area", title: "Service area", type: "string" }),
+    defineField({ name: "founded", title: "Year founded", type: "number" }),
     defineField({ name: "gasSafe", title: "Gas Safe number", type: "string" }),
     defineField({ name: "oftec", title: "OFTEC number", type: "string" }),
     defineField({ name: "companyNo", title: "Company number", type: "string" }),
@@ -33,6 +34,12 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({ name: "seo", type: "seo" }),
+    defineField({
+      name: "footerTagline",
+      title: "Footer tagline",
+      type: "text",
+      rows: 3,
+    }),
   ],
   preview: { select: { title: "name", subtitle: "phone" } },
 });
@@ -248,5 +255,116 @@ export const redirect = defineType({
       initialValue: 301,
     }),
     defineField({ name: "isActive", type: "boolean", initialValue: true }),
+  ],
+});
+
+export const navigation = defineType({
+  name: "navigation",
+  title: "Navigation",
+  type: "document",
+  fields: [
+    defineField({
+      name: "links",
+      title: "Header nav links",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "navLink",
+          fields: [
+            defineField({ name: "label", type: "string", validation: (Rule) => Rule.required() }),
+            defineField({ name: "href", type: "string", validation: (Rule) => Rule.required() }),
+          ],
+          preview: { select: { title: "label", subtitle: "href" } },
+        },
+      ],
+    }),
+    defineField({
+      name: "footerLinks",
+      title: 'Footer "Company" links',
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "navLink",
+          fields: [
+            defineField({ name: "label", type: "string", validation: (Rule) => Rule.required() }),
+            defineField({ name: "href", type: "string", validation: (Rule) => Rule.required() }),
+          ],
+          preview: { select: { title: "label", subtitle: "href" } },
+        },
+      ],
+    }),
+  ],
+});
+
+export const aboutPage = defineType({
+  name: "aboutPage",
+  title: "About page",
+  type: "document",
+  fields: [
+    defineField({ name: "heroTitle", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "heroText", type: "text", rows: 3 }),
+    defineField({
+      name: "values",
+      title: "Our values",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          name: "valueItem",
+          fields: [
+            defineField({ name: "title", type: "string", validation: (Rule) => Rule.required() }),
+            defineField({
+              name: "description",
+              type: "text",
+              rows: 3,
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: { select: { title: "title" } },
+        },
+      ],
+    }),
+    defineField({ name: "teamIntro", title: "Team section intro", type: "text", rows: 2 }),
+    defineField({ name: "quoteText", title: "Director quote", type: "text", rows: 4 }),
+    defineField({ name: "quoteAttribution", title: "Quote attribution", type: "string" }),
+    defineField({ name: "seo", type: "seo" }),
+  ],
+});
+
+export const contactPage = defineType({
+  name: "contactPage",
+  title: "Contact page",
+  type: "document",
+  fields: [
+    defineField({ name: "heroTitle", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "heroText", type: "text", rows: 3 }),
+    defineField({ name: "emergencyText", title: "Emergency callout text", type: "text", rows: 2 }),
+    defineField({ name: "coverageTitle", type: "string" }),
+    defineField({ name: "coverageText", type: "text", rows: 2 }),
+    defineField({ name: "seo", type: "seo" }),
+  ],
+});
+
+export const servicesPage = defineType({
+  name: "servicesPage",
+  title: "Services page",
+  type: "document",
+  fields: [
+    defineField({ name: "heroTitle", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "heroText", type: "text", rows: 3 }),
+    defineField({ name: "seo", type: "seo" }),
+  ],
+});
+
+export const testimonialsPage = defineType({
+  name: "testimonialsPage",
+  title: "Reviews page",
+  type: "document",
+  fields: [
+    defineField({ name: "heroTitle", type: "string", validation: (Rule) => Rule.required() }),
+    defineField({ name: "heroText", type: "text", rows: 3 }),
+    defineField({ name: "seo", type: "seo" }),
   ],
 });

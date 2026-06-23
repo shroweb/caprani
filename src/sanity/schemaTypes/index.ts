@@ -9,16 +9,21 @@ import {
   vacancy,
 } from "./objects";
 import {
+  aboutPage,
   carePlan,
+  contactPage,
   homePage,
   jobsPage,
   legalPage,
+  navigation,
   redirect,
   review,
   service,
+  servicesPage,
   siteAlert,
   siteSettings,
   teamMember,
+  testimonialsPage,
 } from "./documents";
 
 export const schemaTypes = [
@@ -31,7 +36,12 @@ export const schemaTypes = [
   faq,
   vacancy,
   siteSettings,
+  navigation,
   homePage,
+  aboutPage,
+  contactPage,
+  servicesPage,
+  testimonialsPage,
   service,
   teamMember,
   review,
