@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Star, ExternalLink, Facebook, Instagram, Youtube } from "lucide-react";
-import { SITE, REVIEWS } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { getReviews } from "@/lib/cms/content";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleIcon } from "@/components/social-icons";
@@ -8,6 +9,7 @@ import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/testimonials")({
   component: Testimonials,
+  loader: () => getReviews(),
   head: () => ({
     meta: [
       { title: "Reviews — Caprani Plumbing & Heating Hull" },
@@ -20,6 +22,8 @@ export const Route = createFileRoute("/testimonials")({
 });
 
 function Testimonials() {
+  const reviews = Route.useLoaderData();
+
   return (
     <>
       <section className="page-hero">
@@ -39,7 +43,7 @@ function Testimonials() {
         </Reveal>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {REVIEWS.map((r, i) => (
+          {reviews.map((r, i) => (
             <Reveal key={r.name} delay={i * 70}>
               <figure className="service-card flex h-full flex-col rounded-md p-6">
                 <div className="flex items-center justify-between gap-3">

@@ -1,0 +1,43 @@
+import {
+  cta,
+  faq,
+  imageWithAlt,
+  portableText,
+  pricingRow,
+  processStep,
+  seo,
+  vacancy,
+} from "./objects";
+import {
+  carePlan,
+  homePage,
+  jobsPage,
+  legalPage,
+  redirect,
+  review,
+  service,
+  siteAlert,
+  siteSettings,
+  teamMember,
+} from "./documents";
+
+export const schemaTypes = [
+  seo,
+  imageWithAlt,
+  cta,
+  portableText,
+  processStep,
+  pricingRow,
+  faq,
+  vacancy,
+  siteSettings,
+  homePage,
+  service,
+  teamMember,
+  review,
+  carePlan,
+  jobsPage,
+  legalPage,
+  siteAlert,
+  redirect,
+];

@@ -4,30 +4,7 @@ import { z } from "zod";
 import { Briefcase, MapPin, Clock, Check } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { GoogleRating } from "@/components/google-rating";
-
-const vacancies = [
-  {
-    title: "Gas Safe Heating Engineer",
-    location: "Hull",
-    type: "Full-time",
-    description:
-      "Experienced Gas Safe engineer to join our domestic install & service team. Company van and tools provided.",
-  },
-  {
-    title: "Plumbing Apprentice",
-    location: "Hull",
-    type: "Apprenticeship",
-    description:
-      "Earn while you learn — work alongside experienced engineers and study towards your NVQ.",
-  },
-  {
-    title: "Bathroom Installer",
-    location: "Hull / East Yorkshire",
-    type: "Full-time",
-    description:
-      "Skilled bathroom fitter with experience in tiling, plumbing first/second fix and complete refurbishments.",
-  },
-];
+import { getJobsPage } from "@/lib/cms/content";
 
 const schema = z.object({
   name: z.string().trim().min(2).max(80),
@@ -39,6 +16,7 @@ const schema = z.object({
 
 export const Route = createFileRoute("/jobs")({
   component: Jobs,
+  loader: () => getJobsPage(),
   head: () => ({
     meta: [
       { title: "Careers — Join Caprani Plumbing & Heating Hull" },
@@ -52,12 +30,17 @@ export const Route = createFileRoute("/jobs")({
 });
 
 function Jobs() {
+  const { heroTitle, heroText, vacancies } = Route.useLoaderData();
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [formError, setFormError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
       const errs: Record<string, string> = {};
@@ -68,18 +51,49 @@ function Jobs() {
       return;
     }
     setErrors({});
-    setSent(true);
+    setFormError("");
+    setSubmitting(true);
+
+    try {
+      const response = await fetch("/api/jobs/apply", { method: "POST", body: formData });
+      const result = (await response.json()) as {
+        ok?: boolean;
+        message?: string;
+        errors?: Record<string, string[]>;
+      };
+
+      if (!response.ok || !result.ok) {
+        if (result.errors) {
+          setErrors(
+            Object.fromEntries(
+              Object.entries(result.errors).map(([key, value]) => [
+                key,
+                value?.[0] ?? "Invalid value",
+              ]),
+            ),
+          );
+        }
+        setFormError(
+          result.message ?? "We couldn't send this application. Please email us instead.",
+        );
+        return;
+      }
+
+      setSent(true);
+      form.reset();
+    } catch {
+      setFormError("We couldn't send this application. Please email us instead.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
     <>
       <section className="page-hero">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <h1 className="text-4xl font-black sm:text-5xl">Join the Caprani team</h1>
-          <p className="mt-4 max-w-2xl text-primary-foreground/80">
-            We're growing — and we're always keen to hear from talented engineers and apprentices
-            who take pride in their work.
-          </p>
+          <h1 className="text-4xl font-black sm:text-5xl">{heroTitle}</h1>
+          <p className="mt-4 max-w-2xl text-primary-foreground/80">{heroText}</p>
           <GoogleRating className="mt-7" />
         </div>
       </section>
@@ -189,10 +203,12 @@ function Jobs() {
                   </div>
                   <button
                     type="submit"
+                    disabled={submitting}
                     className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-3.5 text-base font-semibold text-accent-foreground transition-colors hover:bg-accent/90 sm:w-auto"
                   >
-                    Submit application
+                    {submitting ? "Submitting..." : "Submit application"}
                   </button>
+                  {formError && <p className="mt-3 text-sm text-destructive">{formError}</p>}
                 </>
               )}
             </form>

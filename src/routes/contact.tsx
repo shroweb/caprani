@@ -33,10 +33,13 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [formError, setFormError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const data = Object.fromEntries(fd.entries());
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
@@ -48,7 +51,39 @@ function Contact() {
       return;
     }
     setErrors({});
-    setSent(true);
+    setFormError("");
+    setSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", { method: "POST", body: fd });
+      const result = (await response.json()) as {
+        ok?: boolean;
+        message?: string;
+        errors?: Record<string, string[]>;
+      };
+
+      if (!response.ok || !result.ok) {
+        if (result.errors) {
+          setErrors(
+            Object.fromEntries(
+              Object.entries(result.errors).map(([key, value]) => [
+                key,
+                value?.[0] ?? "Invalid value",
+              ]),
+            ),
+          );
+        }
+        setFormError(result.message ?? "We couldn't send this request. Please call us instead.");
+        return;
+      }
+
+      setSent(true);
+      form.reset();
+    } catch {
+      setFormError("We couldn't send this request. Please call us instead.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -155,10 +190,12 @@ function Contact() {
                   </div>
                   <button
                     type="submit"
+                    disabled={submitting}
                     className="mt-6 inline-flex w-full items-center justify-center rounded-md bg-accent px-6 py-4 text-sm font-bold text-accent-foreground transition-colors hover:bg-accent/90 sm:w-auto"
                   >
-                    Send booking request
+                    {submitting ? "Sending..." : "Send booking request"}
                   </button>
+                  {formError && <p className="mt-3 text-sm text-destructive">{formError}</p>}
                   <p className="mt-3 text-xs text-muted-foreground">
                     We'll never share your details. Replies usually within 1 working hour.
                   </p>

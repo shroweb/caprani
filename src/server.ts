@@ -1,5 +1,8 @@
 import "./lib/error-capture";
 
+import { handlePreview, handleRevalidate } from "./lib/server/cms-api";
+import { handleContactSubmission, handleJobApplication } from "./lib/server/forms";
+import type { AppEnv } from "./lib/server/platform";
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
 
@@ -69,6 +72,25 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const url = new URL(request.url);
+      const appEnv = env as AppEnv;
+
+      if (request.method === "POST" && url.pathname === "/api/contact") {
+        return handleContactSubmission(request, appEnv);
+      }
+
+      if (request.method === "POST" && url.pathname === "/api/jobs/apply") {
+        return handleJobApplication(request, appEnv);
+      }
+
+      if (request.method === "GET" && url.pathname === "/api/preview") {
+        return handlePreview(request, appEnv);
+      }
+
+      if (request.method === "POST" && url.pathname === "/api/revalidate") {
+        return handleRevalidate(request, appEnv);
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);

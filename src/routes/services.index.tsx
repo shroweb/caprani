@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { SERVICES } from "@/lib/site";
+import { getServices } from "@/lib/cms/content";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/services/")({
   component: ServicesIndex,
+  loader: () => getServices(),
   head: () => ({
     meta: [
       { title: "Services — Caprani Plumbing & Heating Hull" },
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/services/")({
 });
 
 function ServicesIndex() {
-  const [featured, ...rest] = SERVICES;
+  const [featured, ...rest] = Route.useLoaderData();
 
   return (
     <>

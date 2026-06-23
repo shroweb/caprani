@@ -1,16 +1,16 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Phone, ShieldCheck, Wrench, HelpCircle } from "lucide-react";
-import { SERVICES, SERVICE_DETAILS, SITE } from "@/lib/site";
+import { getServiceDetail, getServices } from "@/lib/cms/content";
+import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/services/$slug")({
   component: ServiceDetail,
-  loader: ({ params }) => {
-    const service = SERVICES.find((s) => s.slug === params.slug);
+  loader: async ({ params }) => {
+    const [service, services] = await Promise.all([getServiceDetail(params.slug), getServices()]);
     if (!service) throw notFound();
-    const details = SERVICE_DETAILS[service.slug];
-    return { service, details };
+    return { service, details: service, services };
   },
   head: ({ loaderData }) => {
     const s = loaderData?.service;
@@ -28,10 +28,10 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetail() {
-  const { service, details } = Route.useLoaderData();
+  const { service, details, services } = Route.useLoaderData();
   const related = (details?.related ?? [])
-    .map((slug: string) => SERVICES.find((s) => s.slug === slug))
-    .filter(Boolean) as Array<(typeof SERVICES)[number]>;
+    .map((slug: string) => services.find((s) => s.slug === slug))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   return (
     <>

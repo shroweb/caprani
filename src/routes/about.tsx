@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, BadgeCheck } from "lucide-react";
-import { SITE, TEAM, DIRECTOR_QUOTE } from "@/lib/site";
+import { SITE, DIRECTOR_QUOTE } from "@/lib/site";
+import { getTeamMembers } from "@/lib/cms/content";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleRating } from "@/components/google-rating";
 
 export const Route = createFileRoute("/about")({
   component: About,
+  loader: () => getTeamMembers(),
   head: () => ({
     meta: [
       { title: "About — Caprani Plumbing & Heating | Family-run in Hull since 2016" },
@@ -20,6 +22,8 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
+  const team = Route.useLoaderData();
+
   return (
     <>
       {/* Page hero */}
@@ -105,7 +109,7 @@ function About() {
         </Reveal>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3">
-          {TEAM.map((p, i) => (
+          {team.map((p, i) => (
             <Reveal key={p.name} delay={i * 45}>
               <figure className="service-card group overflow-hidden rounded-md">
                 <div className="aspect-square overflow-hidden bg-secondary">

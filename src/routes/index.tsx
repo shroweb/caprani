@@ -5,10 +5,15 @@ import { GoogleIcon } from "@/components/social-icons";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleRating } from "@/components/google-rating";
+import { getHomePage } from "@/lib/cms/content";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+  component: Home,
+  loader: () => getHomePage(),
+});
 
 function Home() {
+  const { heroTitle, heroText, whyChooseUs, process } = Route.useLoaderData();
   const yearsSince = new Date().getFullYear() - SITE.founded;
 
   return (
@@ -29,16 +34,11 @@ function Home() {
         <div className="absolute inset-x-0 bottom-0 px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8 lg:pb-20">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-[580px] animate-fade-up">
-              <h1 className="text-5xl font-black leading-[1.01] text-white sm:text-6xl lg:text-7xl">
-                Your local
-                <br />
-                plumbing &amp;
-                <br />
-                heating team
+              <h1 className="text-5xl font-black leading-[1.05] text-white sm:text-6xl lg:text-[4.5rem]">
+                {heroTitle}
               </h1>
               <p className="mt-6 max-w-[430px] text-base leading-8 text-white/74 sm:text-lg">
-                Family-run Gas Safe engineers serving Hull and East Yorkshire from Spring Bank West
-                since {SITE.founded}.
+                {heroText}
               </p>
               <GoogleRating className="mt-7" />
               <div className="mt-8 flex flex-wrap gap-3">
@@ -163,21 +163,14 @@ function Home() {
             <h2 className="text-3xl font-black sm:text-4xl">Simple from start to finish</h2>
           </Reveal>
           <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-primary-foreground/12 bg-primary-foreground/12 sm:grid-cols-3">
-            <ProcessStep
-              num="01"
-              title="You ring us"
-              desc="Any time, any day. Someone picks up — or calls back within the hour. No hold music, no chatbot."
-            />
-            <ProcessStep
-              num="02"
-              title="We come to you"
-              desc="Same-day for emergencies. We diagnose, give you a fixed price, and won't start until you're happy with it."
-            />
-            <ProcessStep
-              num="03"
-              title="Fixed and guaranteed"
-              desc="The invoice matches the quote. Every job carries a 12-month workmanship guarantee. Gas Safe paperwork left with you."
-            />
+            {process.map((step, i) => (
+              <ProcessStep
+                key={step.title}
+                num={String(i + 1).padStart(2, "0")}
+                title={step.title}
+                desc={step.description}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -193,24 +186,13 @@ function Home() {
             </h2>
           </Reveal>
           <div className="mt-12 grid gap-10 sm:grid-cols-3">
-            {[
-              {
-                title: "We pick up the phone",
-                desc: "Our engineers carry their own phones. You'll reach a real person — not a call centre, not a voicemail.",
-              },
-              {
-                title: "The price you're quoted is the price you pay",
-                desc: "We give written fixed prices before any work starts. The invoice won't surprise you.",
-              },
-              {
-                title: "Gas Safe, every single time",
-                desc: "Every gas job is done by a registered engineer. Certificates issued on the day, left with you in writing.",
-              },
-            ].map((p, i) => (
+            {whyChooseUs.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
                 <div className="border-l-2 border-accent py-1 pl-6">
                   <h3 className="text-lg font-bold text-foreground">{p.title}</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                    {p.description}
+                  </p>
                 </div>
               </Reveal>
             ))}

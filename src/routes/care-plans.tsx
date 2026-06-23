@@ -4,9 +4,11 @@ import { SITE } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { CtaBand } from "@/components/cta-band";
 import { GoogleRating } from "@/components/google-rating";
+import { getCarePlan } from "@/lib/cms/content";
 
 export const Route = createFileRoute("/care-plans")({
   component: CarePlans,
+  loader: () => getCarePlan(),
   head: () => ({
     meta: [
       { title: "Landlord Care Plan — £29.99/mo | Caprani Plumbing & Heating Hull" },
@@ -19,97 +21,16 @@ export const Route = createFileRoute("/care-plans")({
   }),
 });
 
-const included = [
-  { t: "Unlimited 24/7 call-outs", d: "No call-out charges, ever. Day or night." },
-  {
-    t: "CP12 Landlord Gas Safety Certificate",
-    d: "Annual inspection covering 1 gas boiler + 1 additional gas appliance.",
-  },
-  { t: "Annual boiler service", d: "Full yearly service by a Gas Safe engineer." },
-  { t: "Carbon monoxide alarm check", d: "Plus a FREE replacement CO alarm if found defective." },
-  { t: "1 tap or 1 toilet repair", d: "We cover minor repairs — no separate trades needed." },
-  { t: "Annual water quality test", d: "Professional water test once a year." },
-];
-
-const memberPerks = [
-  "20% loyalty discount on new boiler installs (after 12+ months)",
-  "10% off additional plumbing, heating and drainage services",
-  "Priority service over non-care-plan customers",
-  "4-hour appointment windows",
-  "Emergency call-outs attended within 2 hours",
-];
-
-const excluded = [
-  {
-    category: "Gas appliances",
-    items: [
-      "Pre-existing faults at sign-up",
-      "Commercial gas appliances",
-      "Boilers over 70kW",
-      "Back boilers with obsolete components",
-      "Unvented hot water cylinders",
-      "Gas pipework alterations or upgrades",
-      "Flue and chimney work",
-      "Asbestos removal",
-      "Cosmetic repairs or deep cleaning",
-      "Damage from limescale, sludge or poor maintenance",
-    ],
-  },
-  {
-    category: "Central heating",
-    items: [
-      "Radiator bleeding, balancing or remedial work",
-      "Non-standard radiator valve repairs",
-      "Cylinder or expansion vessel work",
-      "Heat pumps, solar thermal or specialist systems",
-      "Powerflushing or chemical cleaning (available separately)",
-    ],
-  },
-  {
-    category: "Water pipework",
-    items: [
-      "Lead, steel or iron pipework",
-      "Pipework access labour exceeding 20 minutes",
-      "Stop tap repairs or replacement",
-      "Washing machine or dishwasher connections",
-      "Pipework beyond the external stop tap",
-      "Shared or communal building pipework",
-      "Frozen pipe or tenant damage",
-    ],
-  },
-  {
-    category: "Taps & toilets",
-    items: [
-      "Sanitary ware replacement",
-      "Work requiring removal of tiling or fitted furniture",
-      "Concealed cisterns without access panels",
-      "Macerators, bidets, urinals or electric toilets",
-      "Limescale damage",
-      "Blockages from tenant misuse",
-    ],
-  },
-  {
-    category: "General",
-    items: [
-      "Drainage systems and waste pipework",
-      "Shower systems and shower pumps",
-      "Water ingress from roofs or external sources",
-      "Damage from frost, fire, floods or acts of God",
-      "Third-party, inter-tenancy or tenant negligence damage",
-      "Liability for property damage caused by leaks",
-    ],
-  },
-];
-
 function CarePlans() {
+  const { title, intro, included, memberPerks, excluded } = Route.useLoaderData();
+
   return (
     <>
       <section className="page-hero">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-          <h1 className="text-4xl font-black sm:text-5xl">Landlord Care Plan</h1>
+          <h1 className="text-4xl font-black sm:text-5xl">{title}</h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-primary-foreground/75">
-            Hassle-free property maintenance and compliance in one monthly fee. Built for Hull
-            landlords who want their phone to stop ringing at 11pm.
+            {intro}
           </p>
           <GoogleRating className="mt-7" />
           <div className="mt-10">
@@ -140,15 +61,9 @@ function CarePlans() {
               </p>
               <ul className="mt-6 grid gap-4 sm:grid-cols-2">
                 {included.map((item) => (
-                  <li
-                    key={item.t}
-                    className="flex gap-3 rounded-md border border-border bg-card p-5"
-                  >
+                  <li key={item} className="flex gap-3 rounded-md border border-border bg-card p-5">
                     <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-                    <div>
-                      <div className="font-semibold text-foreground">{item.t}</div>
-                      <div className="mt-1 text-sm text-muted-foreground">{item.d}</div>
-                    </div>
+                    <div className="text-sm text-foreground">{item}</div>
                   </li>
                 ))}
               </ul>
@@ -218,9 +133,9 @@ function CarePlans() {
           </Reveal>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {excluded.map((cat, i) => (
-              <Reveal key={cat.category} delay={i * 55}>
+              <Reveal key={cat.title} delay={i * 55}>
                 <div className="rounded-md border border-border bg-card p-5">
-                  <h3 className="text-sm font-bold text-foreground">{cat.category}</h3>
+                  <h3 className="text-sm font-bold text-foreground">{cat.title}</h3>
                   <ul className="mt-3 space-y-1.5">
                     {cat.items.map((item) => (
                       <li

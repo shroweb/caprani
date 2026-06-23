@@ -20,6 +20,9 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Sanity Studio local runtime
+.sanity/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
