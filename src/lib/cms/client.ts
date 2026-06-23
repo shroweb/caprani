@@ -3,7 +3,17 @@ import imageUrlBuilder from "@sanity/image-url";
 
 const apiVersion = "2026-06-23";
 
+// `import.meta.env.VITE_*` is replaced at Vite BUILD time — it only has a
+// value if the var was set in the environment that ran the build. Cloudflare
+// Worker dashboard vars are only available at REQUEST time, via `process.env`
+// (populated from the Worker's `env` bindings in src/server.ts, using the
+// `nodejs_compat` flag). Check process.env first so dashboard-configured
+// values actually take effect in production; fall back to import.meta.env
+// for local dev, where .env.local is loaded into the Vite build directly.
 function publicEnv(name: "VITE_SANITY_PROJECT_ID" | "VITE_SANITY_DATASET") {
+  if (typeof process !== "undefined" && process.env?.[name]) {
+    return process.env[name];
+  }
   return import.meta.env[name] as string | undefined;
 }
 

@@ -72,6 +72,14 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      // Cloudflare Worker dashboard vars/secrets only arrive via this `env`
+      // parameter at request time. Mirror them onto `process.env` (available
+      // thanks to the `nodejs_compat` flag) so code that reads
+      // `process.env.*` directly — e.g. the Sanity client config — sees them.
+      if (env && typeof env === "object") {
+        Object.assign(process.env, env as Record<string, string>);
+      }
+
       const url = new URL(request.url);
       const appEnv = env as AppEnv;
 
