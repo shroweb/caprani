@@ -1,0 +1,1 @@
+<?php get_header(); while ( have_posts() ) { the_post(); cp_phead( '', esc_html( get_the_title() ) ); echo '<section class="sec"><div class="wrap narrow prose">'; the_content(); echo '</div></section>'; } get_footer();

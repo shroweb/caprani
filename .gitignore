@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# LocalWP-generated machine-specific environment
+app/.envrc
+
+# Runtime logs
+logs/
+
+# Editors / IDE
+.vscode/
+.idea/
+*.swp
+
+# Node (if tooling is added later)
+node_modules/
+npm-debug.log*
+yarn-error.log*

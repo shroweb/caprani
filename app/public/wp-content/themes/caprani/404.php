@@ -1,0 +1,1 @@
+<?php get_header(); cp_phead( '404', 'Page not found', 'Sounds like a blockage. Let’s get you back home.' ); ?><section class="sec"><div class="wrap"><p class="actions"><a class="btn orange" href="<?php echo cp_url( '' ); ?>">Back to home</a></p></div></section><?php get_footer();

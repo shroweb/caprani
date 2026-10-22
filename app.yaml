@@ -1,0 +1,5 @@
+name: caprani
+app_id: da_KAmI3tXUmel4
+owner: rdx-shro
+package: .
+kind: wasmer.io/App.v0
